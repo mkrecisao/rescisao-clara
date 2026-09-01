@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0B1C33" />
+  <meta name="description" content="Rescisão Clara: calculadora gratuita de rescisão CLT. Saldo, aviso, 13º, férias e FGTS. Grátis, sem cadastro. Estimativa informativa." />
+  <title>Rescisão Clara — calculadora de rescisão CLT</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230B1C33'/%3E%3Crect x='1' y='1' width='30' height='30' rx='7' fill='none' stroke='%23F5C542' stroke-width='1.5'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-size='13' font-family='Arial' font-weight='700' fill='%23F5C542'%3ERC%3C/text%3E%3C/svg%3E" />
+  <meta property="og:title" content="Rescisão Clara — calculadora de rescisão CLT" />
+  <meta property="og:description" content="Calcule saldo, aviso, 13º, férias e FGTS. Grátis, sem cadastro. Estimativa informativa." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:url" content="https://brewpage.app/rescisao-clara/63dbGrS7AE/index.html" />
+  <meta property="og:image" content="https://brewpage.app/rescisao-clara/63dbGrS7AE/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Rescisão Clara — calculadora de rescisão CLT" />
+  <meta name="twitter:description" content="Calcule saldo, aviso, 13º, férias e FGTS. Grátis, sem cadastro." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+  <div class="wrap">
+    <header class="site-header">
+      <a class="logo" href="index.html">
+        <span class="mark">RC</span>
+        <span><strong>Rescisão Clara</strong><em>CLT sem enrolação</em></span>
+      </a>
+      <nav><a href="#oferta">PDF R$49,90</a></nav>
+    </header>
+
+    <section class="hero" id="conteudo">
+      <span class="badge">CLT · grátis</span>
+      <h1>Calcule sua rescisão com clareza</h1>
+      <p class="sub">Saldo, aviso, 13º, férias e FGTS — estimativa na hora. O cálculo na tela é gratuito e completo.</p>
+      <ul class="trust">
+        <li>Grátis, sem cadastro</li>
+        <li>Sem dado pessoal</li>
+        <li>Não substitui o TRCT</li>
+      </ul>
+    </section>
+
+    <div class="layout">
+      <div class="form-col">
+        <form class="card" id="formCalc" onsubmit="event.preventDefault(); calcular();">
+          <p class="kicker">Seus números</p>
+          <h2 class="card-title">Dados do contrato</h2>
+          <p class="hint" style="margin:0 0 8px">Use o salário bruto e as datas da CTPS. A estimativa não inclui INSS, IR nem média de variáveis.</p>
+
+          <label for="salario">Salário mensal bruto (R$)</label>
+          <input id="salario" name="salario" type="number" inputmode="decimal" min="0" step="0.01" value="3000" autocomplete="off" />
+          <span class="hint">Valor cheio do mês, antes dos descontos.</span>
+
+          <div class="row">
+            <div>
+              <label for="admissao">Admissão</label>
+              <input id="admissao" name="admissao" type="date" value="2024-03-01" />
+            </div>
+            <div>
+              <label for="saida">Saída</label>
+              <input id="saida" name="saida" type="date" value="2026-06-15" />
+            </div>
+          </div>
+          <span class="hint">A data de saída é a do desligamento, não a projetada do aviso.</span>
+
+          <p id="lbl-tipo" class="kicker" style="margin-top:18px">Tipo de rescisão</p>
+          <div class="seg tipo" role="radiogroup" aria-labelledby="lbl-tipo">
+            <button type="button" class="seg-btn" data-bind="tipo" data-value="sem_justa" aria-pressed="true">Demissão sem justa causa</button>
+            <button type="button" class="seg-btn" data-bind="tipo" data-value="pedido" aria-pressed="false">Pedido de demissão</button>
+            <button type="button" class="seg-btn" data-bind="tipo" data-value="acordo" aria-pressed="false">Acordo 484-A</button>
+            <button type="button" class="seg-btn" data-bind="tipo" data-value="justa" aria-pressed="false">Justa causa</button>
+            <button type="button" class="seg-btn" data-bind="tipo" data-value="indireta" aria-pressed="false">Rescisão indireta</button>
+          </div>
+          <label class="sr-only" for="tipo">Tipo de rescisão</label>
+          <select id="tipo" class="sr-only" tabindex="-1">
+            <option value="sem_justa" selected>Demissão sem justa causa</option>
+            <option value="pedido">Pedido de demissão</option>
+            <option value="acordo">Acordo 484-A</option>
+            <option value="justa">Justa causa</option>
+            <option value="indireta">Rescisão indireta</option>
+          </select>
+
+          <p id="lbl-aviso" class="kicker" style="margin-top:18px">Aviso prévio</p>
+          <div class="seg" role="radiogroup" aria-labelledby="lbl-aviso">
+            <button type="button" class="seg-btn" data-bind="aviso" data-value="nao" aria-pressed="true">Não vou cumprir (indenizado / pode descontar)</button>
+            <button type="button" class="seg-btn" data-bind="aviso" data-value="sim" aria-pressed="false">Vou cumprir trabalhando</button>
+          </div>
+          <label class="sr-only" for="aviso">Vai cumprir o aviso trabalhando?</label>
+          <select id="aviso" class="sr-only" tabindex="-1">
+            <option value="nao" selected>Não (indenizado / pode descontar)</option>
+            <option value="sim">Sim</option>
+          </select>
+
+          <div class="row">
+            <div>
+              <label for="feriasVenc">Férias vencidas (períodos)</label>
+              <input id="feriasVenc" type="number" min="0" step="1" value="0" />
+              <span class="hint">Quantos períodos de 30 dias ainda não gozados.</span>
+            </div>
+            <div>
+              <label for="diasMes">Dias no mês da saída</label>
+              <input id="diasMes" type="number" min="0" max="31" step="1" value="15" />
+              <span class="hint">Preenchido pela data de saída; ajuste se preciso.</span>
+            </div>
+          </div>
+
+          <label for="fgts">Saldo do FGTS na conta (R$)</label>
+          <input id="fgts" type="number" inputmode="decimal" min="0" step="0.01" value="5760" />
+          <span class="hint">O saldo que aparece no app FGTS, não o depósito do mês.</span>
+
+          <button class="calc" type="submit">Calcular agora</button>
+        </form>
+      </div>
+
+      <div class="results-col">
+        <div id="resultado" class="hidden" aria-live="polite">
+          <div class="card result-card">
+            <p class="kicker">Esta saída</p>
+            <p class="total-label">Total estimado</p>
+            <div class="total-hero gold" id="totGeral"></div>
+            <div class="total-split">
+              <div>
+                <span class="split-label">Verbas da empresa</span>
+                <span class="split-val gold" id="totEmpresa"></span>
+              </div>
+              <div>
+                <span class="split-label">Saque do FGTS</span>
+                <span class="split-val" id="totFgts"></span>
+              </div>
+            </div>
+            <div id="linhas"></div>
+            <p class="note" id="bases"></p>
+          </div>
+
+          <div class="card" style="margin-top:14px">
+            <p class="kicker">Comparação</p>
+            <h2 class="card-title">Sem justa × pedido × acordo</h2>
+            <div class="table-scroll">
+              <table>
+                <thead>
+                  <tr><th></th><th>Sem justa</th><th>Pedido</th><th>Acordo</th></tr>
+                </thead>
+                <tbody id="cmp"></tbody>
+              </table>
+            </div>
+            <p class="note">Estimativa com os mesmos números, mudando só o tipo de saída. Não é valor garantido.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="card promo" id="oferta">
+      <p class="kicker">Relatório personalizado</p>
+      <h2>Leve o seu cálculo em PDF</h2>
+      <div class="price">R$49,90 <small>pagamento único</small></div>
+      <ul class="checklist">
+        <li>
+          <svg class="check" viewBox="0 0 20 20" aria-hidden="true"><path fill="currentColor" d="M10 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm3.64-9.86-4.1 4.1a1 1 0 0 1-1.42 0L6.36 10.5a1 1 0 0 1 1.42-1.42l1.05 1.05 3.39-3.39a1 1 0 1 1 1.42 1.4z"/></svg>
+          <span>Os seus números: salário, datas, tipo, aviso, férias e FGTS</span>
+        </li>
+        <li>
+          <svg class="check" viewBox="0 0 20 20" aria-hidden="true"><path fill="currentColor" d="M10 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm3.64-9.86-4.1 4.1a1 1 0 0 1-1.42 0L6.36 10.5a1 1 0 0 1 1.42-1.42l1.05 1.05 3.39-3.39a1 1 0 1 1 1.42 1.4z"/></svg>
+          <span>Cada verba discriminada com a fórmula ao lado, para conferir no TRCT</span>
+        </li>
+        <li>
+          <svg class="check" viewBox="0 0 20 20" aria-hidden="true"><path fill="currentColor" d="M10 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm3.64-9.86-4.1 4.1a1 1 0 0 1-1.42 0L6.36 10.5a1 1 0 0 1 1.42-1.42l1.05 1.05 3.39-3.39a1 1 0 1 1 1.42 1.4z"/></svg>
+          <span>Tabela comparando sem justa causa, pedido e acordo 484-A</span>
+        </li>
+        <li>
+          <svg class="check" viewBox="0 0 20 20" aria-hidden="true"><path fill="currentColor" d="M10 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm3.64-9.86-4.1 4.1a1 1 0 0 1-1.42 0L6.36 10.5a1 1 0 0 1 1.42-1.42l1.05 1.05 3.39-3.39a1 1 0 1 1 1.42 1.4z"/></svg>
+          <span>Prazo dos 10 dias corridos (art. 477 §6º) em data real</span>
+        </li>
+        <li>
+          <svg class="check" viewBox="0 0 20 20" aria-hidden="true"><path fill="currentColor" d="M10 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm3.64-9.86-4.1 4.1a1 1 0 0 1-1.42 0L6.36 10.5a1 1 0 0 1 1.42-1.42l1.05 1.05 3.39-3.39a1 1 0 1 1 1.42 1.4z"/></svg>
+          <span>Se esta saída dá direito a seguro-desemprego</span>
+        </li>
+        <li>
+          <svg class="check" viewBox="0 0 20 20" aria-hidden="true"><path fill="currentColor" d="M10 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm3.64-9.86-4.1 4.1a1 1 0 0 1-1.42 0L6.36 10.5a1 1 0 0 1 1.42-1.42l1.05 1.05 3.39-3.39a1 1 0 1 1 1.42 1.4z"/></svg>
+          <span><strong>Bônus:</strong> checklist O que conferir no TRCT</span>
+        </li>
+      </ul>
+      <button class="btn" type="button" id="btnCheckout" onclick="irParaCheckout()">Quero meu PDF (R$49,90)</button>
+      <p class="fine">O cálculo nesta página continua gratuito e completo. O PDF é o relatório com os seus números para levar no acerto.</p>
+      <p id="checkoutMsg" class="hidden" role="status"></p>
+    </section>
+
+    <footer>
+      Conteúdo informativo. Não substitui advogado, contador, TRCT, eSocial nem a convenção coletiva. Não calcula INSS, IR, médias de variáveis, norma coletiva nem parcelas do seguro-desemprego. Não promete valor a receber — os totais são <strong>estimativa</strong>.
+      Regras resumidas da calculadora: aviso 30 + 3 dias por ano completo (máx. 90). Sem justa causa e indireta: aviso indenizado se não cumprido, 13º, férias + 1/3, multa 40%, saque 100%. Pedido: sem multa e sem saque; aviso não cumprido pode descontar 1 salário. Acordo 484-A: metade do aviso indenizado, multa 20%, saque 80%. Justa causa: em regra saldo e férias vencidas.
+    </footer>
+  </div>
+
+<script>
+/* COLE AQUI O LINK DA KIWIFY (checkout do relatório PDF personalizado, R$49,90).
+   Se ficar vazio, o botão avisa que o checkout ainda não está ligado.
+   Não coloque link de teste, de outro produto, nem URL inventada. */
+const CHECKOUT_URL = "";
+
+function brl(n){
+  return n.toLocaleString("pt-BR", {style:"currency", currency:"BRL"});
+}
+function parseDate(id){
+  const v = document.getElementById(id).value;
+  if(!v) return null;
+  const [y,m,d] = v.split("-").map(Number);
+  return new Date(y, m-1, d);
+}
+function yearsComplete(a, b){
+  let y = b.getFullYear() - a.getFullYear();
+  const md = (b.getMonth() - a.getMonth()) * 32 + (b.getDate() - a.getDate());
+  if (md < 0) y -= 1;
+  return Math.max(0, y);
+}
+function addDays(dt, days){
+  const x = new Date(dt.getTime());
+  x.setDate(x.getDate() + days);
+  return x;
+}
+function avos13(admissao, fim){
+  const startYear = new Date(fim.getFullYear(), 0, 1);
+  const inicio = admissao.getFullYear() === fim.getFullYear() ? admissao : startYear;
+  let months = (fim.getFullYear() - inicio.getFullYear()) * 12 + (fim.getMonth() - inicio.getMonth());
+  if (fim.getDate() >= 15) months += 1;
+  if (inicio !== startYear && inicio.getDate() > 15) months -= 1;
+  return Math.max(0, Math.min(12, months));
+}
+function lastAnniversary(admissao, fim){
+  let a = new Date(fim.getFullYear(), admissao.getMonth(), admissao.getDate());
+  if (a > fim) a = new Date(fim.getFullYear()-1, admissao.getMonth(), admissao.getDate());
+  return a;
+}
+function avosFerias(admissao, fim){
+  const ini = lastAnniversary(admissao, fim);
+  let months = (fim.getFullYear() - ini.getFullYear()) * 12 + (fim.getMonth() - ini.getMonth());
+  if (fim.getDate() >= 15) months += 1;
+  return Math.max(0, Math.min(12, months));
+}
+function pack(tipo, salario, admissao, saida, cumpriu, feriasVenc, diasMes, fgts){
+  const full = tipo === "sem_justa" || tipo === "indireta";
+  const pedido = tipo === "pedido";
+  const acordo = tipo === "acordo";
+  const justa = tipo === "justa";
+  const anos = yearsComplete(admissao, saida);
+  const avisoCheio = Math.min(90, 30 + 3 * anos);
+  let avisoDias = 0;
+  if (full && !cumpriu) avisoDias = avisoCheio;
+  if (acordo && !cumpriu) avisoDias = Math.round(avisoCheio / 2);
+  const projetada = avisoDias > 0 ? addDays(saida, avisoDias) : saida;
+  const a13 = justa ? 0 : avos13(admissao, projetada);
+  const aFer = justa ? 0 : avosFerias(admissao, projetada);
+  const saldo = salario / 30 * diasMes;
+  const avisoVal = salario / 30 * avisoDias;
+  const decimo = salario / 12 * a13;
+  const ferVenc = salario * feriasVenc * (4/3);
+  const ferProp = (salario / 12 * aFer) * (4/3);
+  const multa = full ? fgts * 0.4 : acordo ? fgts * 0.2 : 0;
+  const saque = full ? fgts : acordo ? fgts * 0.8 : 0;
+  const descAviso = (pedido && !cumpriu) ? -salario : 0;
+  const empresa = saldo + avisoVal + decimo + ferVenc + ferProp + multa + descAviso;
+  return {
+    anos, avisoCheio, avisoDias, projetada, a13, aFer,
+    saldo, avisoVal, decimo, ferVenc, ferProp, multa, saque, descAviso,
+    empresa, total: empresa + saque
+  };
+}
+function calcular(){
+  const salario = Number(document.getElementById("salario").value || 0);
+  const admissao = parseDate("admissao");
+  const saida = parseDate("saida");
+  const tipo = document.getElementById("tipo").value;
+  const cumpriu = document.getElementById("aviso").value === "sim";
+  const feriasVenc = Number(document.getElementById("feriasVenc").value || 0);
+  let diasMes = Number(document.getElementById("diasMes").value || 0);
+  const fgts = Number(document.getElementById("fgts").value || 0);
+  if (!admissao || !saida || saida < admissao) {
+    alert("Confira as datas de admissão e saída.");
+    return;
+  }
+  if (!diasMes) diasMes = saida.getDate();
+  const r = pack(tipo, salario, admissao, saida, cumpriu, feriasVenc, diasMes, fgts);
+  const linhas = [
+    ["Saldo de salário", r.saldo],
+    ["Aviso prévio indenizado", r.avisoVal],
+    ["13º proporcional", r.decimo],
+    ["Férias vencidas + 1/3", r.ferVenc],
+    ["Férias proporcionais + 1/3", r.ferProp],
+    ["Multa do FGTS", r.multa],
+    ["Desconto de aviso", r.descAviso],
+  ].map(([n,v]) => `<div class="line"><span>${n}</span><span class="${v<0?"bad":""}">${brl(v)}</span></div>`).join("");
+  document.getElementById("linhas").innerHTML = linhas;
+  document.getElementById("totEmpresa").textContent = brl(r.empresa);
+  document.getElementById("totFgts").textContent = brl(r.saque);
+  document.getElementById("totGeral").textContent = brl(r.total);
+  const proj = r.projetada.toLocaleDateString("pt-BR");
+  document.getElementById("bases").textContent =
+    `${r.anos} ano(s) completo(s) • aviso cheio ${r.avisoCheio} dias • aviso desta saída ${r.avisoDias} dias • 13º ${r.a13}/12 • férias prop. ${r.aFer}/12 • data projetada ${proj}`;
+  const A = pack("sem_justa", salario, admissao, saida, cumpriu, feriasVenc, diasMes, fgts);
+  const B = pack("pedido", salario, admissao, saida, cumpriu, feriasVenc, diasMes, fgts);
+  const C = pack("acordo", salario, admissao, saida, cumpriu, feriasVenc, diasMes, fgts);
+  document.getElementById("cmp").innerHTML = `
+    <tr><td>Verbas empresa</td><td>${brl(A.empresa)}</td><td>${brl(B.empresa)}</td><td>${brl(C.empresa)}</td></tr>
+    <tr><td>Saque FGTS</td><td>${brl(A.saque)}</td><td>${brl(B.saque)}</td><td>${brl(C.saque)}</td></tr>
+    <tr><td><b>Total</b></td><td><b>${brl(A.total)}</b></td><td><b>${brl(B.total)}</b></td><td><b>${brl(C.total)}</b></td></tr>`;
+  document.getElementById("resultado").classList.remove("hidden");
+  document.getElementById("resultado").scrollIntoView({behavior:"smooth", block:"start"});
+}
+document.getElementById("saida").addEventListener("change", e => {
+  const d = parseDate("saida");
+  if (d) document.getElementById("diasMes").value = d.getDate();
+});
+calcular();
+
+function irParaCheckout(){
+  const payload = {
+    salario: document.getElementById("salario").value,
+    admissao: document.getElementById("admissao").value,
+    saida: document.getElementById("saida").value,
+    tipo: document.getElementById("tipo").value,
+    aviso: document.getElementById("aviso").value,
+    feriasVenc: document.getElementById("feriasVenc").value,
+    diasMes: document.getElementById("diasMes").value,
+    fgts: document.getElementById("fgts").value
+  };
+  try { localStorage.setItem("rc_calc", JSON.stringify(payload)); } catch (err) {}
+  const url = (CHECKOUT_URL || "").trim();
+  const msg = document.getElementById("checkoutMsg");
+  if (!url) {
+    msg.textContent = "O checkout ainda não está ligado. A calculadora nesta página continua gratuita — volte quando o link da Kiwify estiver no ar.";
+    msg.classList.remove("hidden");
+    msg.focus();
+    return;
+  }
+  window.location.href = url;
+}
+document.querySelectorAll(".seg-btn").forEach(function(btn){
+  btn.addEventListener("click", function(){
+    const id = btn.getAttribute("data-bind");
+    const val = btn.getAttribute("data-value");
+    document.getElementById(id).value = val;
+    document.querySelectorAll('.seg-btn[data-bind="'+id+'"]').forEach(function(b){
+      b.setAttribute("aria-pressed", b === btn ? "true" : "false");
+    });
+  });
+});
+</script>
+</body>
+</html>
