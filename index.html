@@ -20,6 +20,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18421219722"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-18421219722');
+  </script>
 </head>
 <body>
   <a class="skip" href="#conteudo">Pular para o conteúdo</a>
@@ -45,7 +53,7 @@
 
     <div class="layout">
       <div class="form-col">
-        <form class="card" id="formCalc" onsubmit="event.preventDefault(); calcular();">
+        <form class="card" id="formCalc" onsubmit="event.preventDefault(); calcular(true);">
           <p class="kicker">Seus números</p>
           <h2 class="card-title">Dados do contrato</h2>
           <p class="hint" style="margin:0 0 8px">Use o salário bruto e as datas da CTPS. A estimativa não inclui INSS, IR nem média de variáveis.</p>
@@ -266,7 +274,7 @@ function pack(tipo, salario, admissao, saida, cumpriu, feriasVenc, diasMes, fgts
     empresa, total: empresa + saque
   };
 }
-function calcular(){
+function calcular(origemUsuario){
   const salario = Number(document.getElementById("salario").value || 0);
   const admissao = parseDate("admissao");
   const saida = parseDate("saida");
@@ -306,6 +314,9 @@ function calcular(){
     <tr><td><b>Total</b></td><td><b>${brl(A.total)}</b></td><td><b>${brl(B.total)}</b></td><td><b>${brl(C.total)}</b></td></tr>`;
   document.getElementById("resultado").classList.remove("hidden");
   document.getElementById("resultado").scrollIntoView({behavior:"smooth", block:"start"});
+  if (origemUsuario && typeof gtag === "function") {
+    gtag("event", "conversion", {"send_to": "AW-18421219722/jTI5CNHmuOwcEIqD9s9E"});
+  }
 }
 document.getElementById("saida").addEventListener("change", e => {
   const d = parseDate("saida");
@@ -333,7 +344,19 @@ function irParaCheckout(){
     msg.focus();
     return;
   }
-  window.location.href = url;
+  function irAposHit(){ window.location.href = url; }
+  if (typeof gtag === "function") {
+    var done = false;
+    function go(){ if (done) return; done = true; irAposHit(); }
+    gtag("event", "conversion", {
+      "send_to": "AW-18421219722/eApcCMKBrOwcEIqD9s9E",
+      "event_callback": go,
+      "event_timeout": 2000
+    });
+    setTimeout(go, 2000);
+  } else {
+    irAposHit();
+  }
 }
 document.querySelectorAll(".seg-btn").forEach(function(btn){
   btn.addEventListener("click", function(){
