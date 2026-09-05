@@ -40,8 +40,8 @@
 
     <section class="hero" id="conteudo">
       <span class="badge">Relatório · estimativa</span>
-      <h1>O seu cálculo, em PDF</h1>
-      <p class="sub">Gerado com os números que você informou. Leve no acerto para conferir cada verba no TRCT. Não é valor garantido.</p>
+      <h1>Seu kit do acerto, em PDF</h1>
+      <p class="sub">Cálculo, checklist e o que falar no RH. Leve no celular no dia do acerto. É estimativa — não é valor garantido.</p>
     </section>
 
     <div id="faltou" class="card hidden">
@@ -160,10 +160,10 @@
         <p class="kicker">Baixar</p>
         <h2 class="card-title">Leve o relatório e o bônus</h2>
         <div class="actions two">
-          <button class="btn" type="button" id="btnPdf" onclick="baixarPdf()">Baixar meu PDF</button>
+          <button class="btn" type="button" id="btnPdf" onclick="baixarPdf()">Baixar kit do acerto (PDF)</button>
           <a class="btn-ghost" href="o-que-conferir-no-trct.pdf" download="o-que-conferir-no-trct.pdf">Baixar checklist (bônus)</a>
         </div>
-        <p class="fine">O PDF do relatório usa os números desta tela. O checklist é o guia genérico “O que conferir no TRCT”.</p>
+        <p class="fine">O PDF traz cálculo, checklist e frases pro RH. O arquivo extra é o checklist genérico.</p>
         <p id="pdfMsg" class="hidden" role="status"></p>
       </div>
     </div>
@@ -433,17 +433,17 @@ function baixarPdf(){
       doc.setFont("helvetica", "bold");
       doc.setTextColor(243, 246, 251);
       doc.setFontSize(16);
-      doc.text("Relatório personalizado (estimativa)", M, 28);
+      doc.text("Kit do acerto (estimativa)", M, 28);
     } else {
       doc.setFontSize(8);
-      doc.text("RESCISÃO CLARA  ·  relatório (estimativa)", M, 8);
+      doc.text("RESCISÃO CLARA  ·  kit do acerto", M, 8);
     }
   }
   function footer(page){
     doc.setFont("helvetica", "normal");
     doc.setFontSize(8);
     doc.setTextColor.apply(doc, muted);
-    doc.text("Estimativa informativa. Não substitui TRCT, advogado, contador nem eSocial.", M, 287);
+    doc.text("Estimativa. Nao substitui o papel oficial, advogado, contador nem eSocial.", M, 287);
     doc.text("Página " + page, W - M, 287, { align: "right" });
   }
   let y = 46;
@@ -583,7 +583,7 @@ function baixarPdf(){
   doc.setFont("helvetica", "normal");
   doc.setFontSize(10);
   doc.setTextColor.apply(doc, ink);
-  const prazoTxt = "A partir da data de saída informada (" + fmtDate(e.saida) + "), os 10 dias corridos vencem em " + fmtDate(prazo) + ". O pagamento das verbas rescisórias deve ocorrer até essa data. Atraso pode gerar multa de 1 salário (art. 477 §8º) - confira o caso concreto com o TRCT e, se preciso, com um advogado.";
+  const prazoTxt = "A partir da data de saida informada (" + fmtDate(e.saida) + "), os 10 dias corridos vencem em " + fmtDate(prazo) + ". O pagamento deve ocorrer ate essa data. Atraso por culpa da empresa pode gerar multa de 1 salario. Confira no papel do acerto e, se preciso, com um advogado.";
   const prazoLines = doc.splitTextToSize(prazoTxt, W - 2 * M);
   ensure(prazoLines.length * 5 + 4);
   doc.text(prazoLines, M, y);
@@ -601,8 +601,51 @@ function baixarPdf(){
   doc.text(segLines, M, y);
   y += segLines.length * 5 + 6;
 
-  h2("7. Aviso importante (leia)");
-  const disc = "Esta é uma ESTIMATIVA INFORMATIVA. Não substitui advogado, contador, TRCT, eSocial nem a convenção coletiva. Não calcula INSS, IR, médias de variáveis, norma coletiva nem parcelas do seguro-desemprego. Não promete valor a receber. O documento oficial do acerto é o TRCT / eSocial. Regras da calculadora: aviso 30 + 3 dias por ano completo (máx. 90). Sem justa causa e indireta: aviso indenizado se não cumprido, 13º, férias + 1/3, multa 40%, saque 100%. Pedido: sem multa e sem saque; aviso não cumprido pode descontar 1 salário. Acordo 484-A: metade do aviso indenizado, multa 20%, saque 80%. Justa causa: em regra saldo e férias vencidas.";
+  h2("7. Checklist — o que olhar no papel do acerto");
+  const checks = [
+    "Nome, CPF e datas batem com a carteira?",
+    "Saldo de salario: dias trabalhados no mes da saida",
+    "Aviso previo: indenizado ou trabalhado? Dias batem com o tempo de casa?",
+    "13o proporcional: avos batem com a data projetada?",
+    "Ferias vencidas e proporcionais + 1/3",
+    "Multa e saque do FGTS (quando a modalidade der direito)",
+    "Data limite dos 10 dias corridos para pagar",
+    "Voce esta sendo cobrado de aviso indevido no pedido?"
+  ];
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(10);
+  doc.setTextColor.apply(doc, ink);
+  checks.forEach(function(item){
+    const lines = doc.splitTextToSize(pdfTxt("[ ]  " + item), W - 2 * M);
+    ensure(lines.length * 5 + 2);
+    doc.text(lines, M, y);
+    y += lines.length * 5 + 2;
+  });
+  y += 4;
+
+  h2("8. O que falar no RH (se faltar algo)");
+  const fala = [
+    "Posso conferir esta linha com a conta que eu trouxe? O valor nao bate.",
+    "O aviso proporcional e 30 + 3 dias por ano completo (teto 90). Meu tempo de casa precisa estar refletido nos dias.",
+    "O prazo de pagamento e de 10 dias corridos a partir da saida. A data limite aqui e " + fmtDate(prazo) + ".",
+    "Se o pagamento atrasar por culpa da empresa, cabe multa de 1 salario. Quero que isso conste.",
+    "Antes de assinar, preciso de uma copia do recibo com todos os valores discriminados."
+  ];
+  fala.forEach(function(frase, i){
+    const block = (i + 1) + ") " + String.fromCharCode(34) + frase + String.fromCharCode(34);
+    const lines = doc.splitTextToSize(pdfTxt(block), W - 2 * M);
+    ensure(lines.length * 5 + 3);
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(10);
+    doc.setTextColor.apply(doc, ink);
+    doc.text(lines, M, y);
+    y += lines.length * 5 + 3;
+  });
+  y += 4;
+
+  h2("9. Aviso importante (leia)");
+  const disc = "Esta e uma ESTIMATIVA INFORMATIVA. Nao substitui advogado, contador, o recibo oficial da rescisao, eSocial nem a convencao coletiva. Nao calcula INSS, IR, medias de variaveis, norma coletiva nem parcelas do seguro-desemprego. Nao promete valor a receber. O documento oficial do acerto e o recibo da rescisao / eSocial. Regras da calculadora: aviso 30 + 3 dias por ano completo (max. 90). Sem justa causa e indireta: aviso indenizado se nao cumprido, 13o, ferias + 1/3, multa 40%, saque 100%. Pedido: sem multa e sem saque; aviso nao cumprido pode descontar 1 salario. Acordo 484-A: metade do aviso indenizado, multa 20%, saque 80%. Justa causa: em regra saldo e ferias vencidas.";
+
   const discLines = doc.splitTextToSize(disc, W - 2 * M);
   ensure(discLines.length * 4.6 + 4);
   doc.setFont("helvetica", "normal");
@@ -610,7 +653,7 @@ function baixarPdf(){
   doc.setTextColor.apply(doc, ink);
   doc.text(discLines, M, y);
 
-  doc.save("rescisao-clara-estimativa.pdf");
+  doc.save("rescisao-clara-kit-do-acerto.pdf");
 }
 
 (function init(){
