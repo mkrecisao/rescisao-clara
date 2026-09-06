@@ -822,3 +822,9 @@ nav a {
 @media (max-width: 420px) {
   .social-toast { left: 10px; right: 10px; max-width: none; bottom: 12px; }
 }
+
+.social-toast[data-kind="buy"] {
+  border-color: rgba(198, 245, 49, 0.55);
+  box-shadow: 0 16px 40px rgba(0,0,0,.45), 0 0 0 1px rgba(198,245,49,.15);
+}
+.social-toast[data-kind="buy"] .st-sub { color: #D4FF8A; }
