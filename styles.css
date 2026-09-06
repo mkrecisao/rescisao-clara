@@ -1112,3 +1112,27 @@ html.office-skin .gold { color: #2F6B4F !important; }
 html.office-skin .line { border-bottom-color: #D5DCE6 !important; color: #1B2A4A; }
 html.office-skin th, html.office-skin td { border-bottom-color: #D5DCE6 !important; color: #1B2A4A; }
 html.office-skin table th { color: #5C6B7E !important; }
+
+
+/* Toast mobile fix */
+.social-toast {
+  position: fixed !important;
+  left: 12px !important;
+  right: 12px !important;
+  bottom: calc(12px + env(safe-area-inset-bottom, 0px)) !important;
+  z-index: 99999 !important;
+  max-width: none !important;
+  display: none;
+  opacity: 0;
+  transform: translateY(16px);
+  pointer-events: none;
+  -webkit-transform: translateY(16px);
+}
+.social-toast.show {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  -webkit-transform: translateY(0) !important;
+}
+html.office-skin .social-toast {
+  z-index: 99999 !important;
+}
