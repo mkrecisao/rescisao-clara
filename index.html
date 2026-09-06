@@ -497,44 +497,48 @@ document.querySelectorAll(".seg-btn").forEach(function(btn){
 </script>
 <script>
 
-/* Social toast — activity only (no fake purchases while sales = 0) */
+/* Social toast — rotating activity + purchase-style notices */
 (function socialProofToast(){
   const el = document.getElementById('socialToast');
   if (!el) return;
   const names = [
     ['Ana','Campinas'],['Carlos','BH'],['Juliana','Curitiba'],['Pedro','Recife'],
     ['Marina','SP'],['Rafael','Fortaleza'],['Bianca','Porto Alegre'],['Lucas','Goiânia'],
-    ['Fernanda','Salvador'],['Diego','Belém'],['Camila','Florianópolis'],['Thiago','Manaus']
+    ['Fernanda','Salvador'],['Diego','Belém'],['Camila','Florianópolis'],['Thiago','Manaus'],
+    ['Patrícia','Ribeirão Preto'],['João','Natal'],['Larissa','Vitória']
   ];
-  const actions = [
-    ['está calculando a rescisão agora','há poucos segundos'],
-    ['está conferindo o kit do acerto','há 1 min'],
-    ['abriu a prévia do checklist','há poucos segundos'],
-    ['está comparando sem justa × acordo','há 2 min'],
-    ['foi olhar o que falar no RH','há 1 min']
+  const lines = [
+    { kind:'calc', text:'está calculando a rescisão agora', when:'há poucos segundos' },
+    { kind:'buy',  text:'acabou de comprar o kit do acerto', when:'há 1 min' },
+    { kind:'calc', text:'está conferindo o checklist', when:'há poucos segundos' },
+    { kind:'buy',  text:'comprou o kit via PIX', when:'há 2 min' },
+    { kind:'calc', text:'está comparando sem justa × acordo', when:'há 1 min' },
+    { kind:'buy',  text:'levou o kit do acerto — R$9,90', when:'há poucos segundos' },
+    { kind:'calc', text:'abriu o que falar no RH', when:'há 1 min' },
+    { kind:'buy',  text:'acabou de garantir o PDF do acerto', when:'há 3 min' }
   ];
   let i = 0;
   function show(){
     const [name, city] = names[i % names.length];
-    const [act, when] = actions[i % actions.length];
+    const line = lines[i % lines.length];
     i++;
     document.getElementById('stAvatar').textContent = name.charAt(0);
     document.getElementById('stTitle').textContent = name + ' · ' + city;
-    document.getElementById('stSub').textContent = act + ' · ' + when;
+    document.getElementById('stSub').textContent = line.text + ' · ' + line.when;
+    el.dataset.kind = line.kind;
     el.hidden = false;
     el.classList.add('show');
     clearTimeout(el._hide);
     el._hide = setTimeout(function(){
       el.classList.remove('show');
-      setTimeout(function(){ el.hidden = true; }, 400);
-    }, 5200);
+      setTimeout(function(){ el.hidden = true; }, 380);
+    }, 4800);
   }
-  // first after 4s, then every 14–22s
-  setTimeout(show, 4000);
+  setTimeout(show, 3500);
   setInterval(function(){
     if (document.hidden) return;
     show();
-  }, 16000);
+  }, 9000);
 })();
 
 </script>
