@@ -787,3 +787,38 @@ nav a {
   color: #0A1A08 !important;
 }
 .total-hero { color: var(--lime) !important; text-shadow: 0 0 28px rgba(198,245,49,0.35) !important; }
+
+
+/* Social toast corner */
+.social-toast {
+  position: fixed;
+  left: 16px;
+  bottom: 16px;
+  z-index: 60;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  max-width: min(320px, calc(100vw - 32px));
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: rgba(10, 22, 40, 0.96);
+  border: 1px solid rgba(198, 245, 49, 0.35);
+  box-shadow: 0 16px 40px rgba(0,0,0,.45);
+  color: #fff;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity .35s ease, transform .35s ease;
+  pointer-events: none;
+}
+.social-toast.show { opacity: 1; transform: translateY(0); }
+.st-avatar {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: linear-gradient(145deg, #C6F531, #9BC41A);
+  color: #0A1A08; font-weight: 800; font-size: 16px;
+  display: grid; place-items: center; flex: 0 0 40px;
+}
+.st-title { margin: 0; font-size: 13px; font-weight: 800; }
+.st-sub { margin: 2px 0 0; font-size: 12px; color: #B7C6D6; line-height: 1.35; }
+@media (max-width: 420px) {
+  .social-toast { left: 10px; right: 10px; max-width: none; bottom: 12px; }
+}
