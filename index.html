@@ -306,7 +306,7 @@
       Regras resumidas da calculadora: aviso 30 + 3 dias por ano completo (máx. 90). Sem justa causa e indireta: aviso indenizado se não cumprido, 13º, férias + 1/3, multa 40%, saque 100%. Pedido: sem multa e sem saque; aviso não cumprido pode descontar 1 salário. Acordo 484-A: metade do aviso indenizado, multa 20%, saque 80%. Justa causa: em regra saldo e férias vencidas.
     </footer>
 
-    <div id="socialToast" class="social-toast" hidden aria-live="polite">
+    <div id="socialToast" class="social-toast" aria-live="polite" style="display:none">
       <div class="st-avatar" id="stAvatar">A</div>
       <div class="st-body">
         <p class="st-title" id="stTitle"></p>
@@ -504,40 +504,29 @@ document.querySelectorAll(".seg-btn").forEach(function(btn){
 });
 </script>
 <script>
+(function(){
+  // Helped counter
+  var helped = document.getElementById('helpedCount');
+  if (helped) {
+    var target = 2847;
+    helped.textContent = target.toLocaleString('pt-BR');
+    setInterval(function(){
+      if (document.hidden) return;
+      var cur = parseInt(String(helped.textContent).replace(/\./g,''), 10) || target;
+      helped.textContent = (cur + 1).toLocaleString('pt-BR');
+    }, 28000);
+  }
 
-/* Social toast — rotating activity + purchase-style notices */
-
-(function helpedCounter(){
-  const el = document.getElementById('helpedCount');
+  // Corner social toast — works on mobile
+  var el = document.getElementById('socialToast');
   if (!el) return;
-  const target = 2847;
-  const start = target - 120;
-  let n = start;
-  const step = function(){
-    n += 3;
-    if (n >= target) { el.textContent = target.toLocaleString('pt-BR'); return; }
-    el.textContent = n.toLocaleString('pt-BR');
-    requestAnimationFrame(step);
-  };
-  // slow drip: occasionally bump +1 to look "live"
-  el.textContent = target.toLocaleString('pt-BR');
-  setInterval(function(){
-    if (document.hidden) return;
-    const cur = parseInt(el.textContent.replace(/\./g,''), 10) || target;
-    el.textContent = (cur + 1).toLocaleString('pt-BR');
-  }, 28000);
-})();
-
-(function socialProofToast(){
-  const el = document.getElementById('socialToast');
-  if (!el) return;
-  const names = [
+  var names = [
     ['Ana','Campinas'],['Carlos','BH'],['Juliana','Curitiba'],['Pedro','Recife'],
     ['Marina','SP'],['Rafael','Fortaleza'],['Bianca','Porto Alegre'],['Lucas','Goiânia'],
     ['Fernanda','Salvador'],['Diego','Belém'],['Camila','Florianópolis'],['Thiago','Manaus'],
     ['Patrícia','Ribeirão Preto'],['João','Natal'],['Larissa','Vitória']
   ];
-  const lines = [
+  var lines = [
     { kind:'calc', text:'está calculando a rescisão agora', when:'há poucos segundos' },
     { kind:'buy',  text:'acabou de comprar o kit do acerto', when:'há 1 min' },
     { kind:'calc', text:'está conferindo o checklist', when:'há poucos segundos' },
@@ -547,30 +536,39 @@ document.querySelectorAll(".seg-btn").forEach(function(btn){
     { kind:'calc', text:'abriu o que falar no RH', when:'há 1 min' },
     { kind:'buy',  text:'acabou de garantir o PDF do acerto', when:'há 3 min' }
   ];
-  let i = 0;
+  var i = 0;
+  var hideTimer = null;
   function show(){
-    const [name, city] = names[i % names.length];
-    const line = lines[i % lines.length];
-    i++;
-    document.getElementById('stAvatar').textContent = name.charAt(0);
-    document.getElementById('stTitle').textContent = name + ' · ' + city;
-    document.getElementById('stSub').textContent = line.text + ' · ' + line.when;
-    el.dataset.kind = line.kind;
-    el.hidden = false;
+    var pair = names[i % names.length];
+    var line = lines[i % lines.length];
+    i += 1;
+    var av = document.getElementById('stAvatar');
+    var title = document.getElementById('stTitle');
+    var sub = document.getElementById('stSub');
+    if (av) av.textContent = pair[0].charAt(0);
+    if (title) title.textContent = pair[0] + ' · ' + pair[1];
+    if (sub) sub.textContent = line.text + ' · ' + line.when;
+    el.setAttribute('data-kind', line.kind);
+    el.removeAttribute('hidden');
+    el.style.display = 'flex';
+    // force reflow then show
+    void el.offsetWidth;
     el.classList.add('show');
-    clearTimeout(el._hide);
-    el._hide = setTimeout(function(){
+    if (hideTimer) clearTimeout(hideTimer);
+    hideTimer = setTimeout(function(){
       el.classList.remove('show');
-      setTimeout(function(){ el.hidden = true; }, 380);
-    }, 4800);
+      setTimeout(function(){
+        el.style.display = 'none';
+      }, 400);
+    }, 5500);
   }
-  setTimeout(show, 3500);
+  // first popup quickly so mobile users see it
+  setTimeout(show, 1800);
   setInterval(function(){
     if (document.hidden) return;
     show();
-  }, 9000);
+  }, 8500);
 })();
-
 </script>
 </body>
 </html>
