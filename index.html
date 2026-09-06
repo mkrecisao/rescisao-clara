@@ -56,6 +56,14 @@
           <div class="proof-card"><span>Entrega</span><strong>PDF na hora</strong></div>
         </div>
       </div>
+
+      <div class="helped-banner" aria-label="Prova social">
+        <div class="helped-ico" aria-hidden="true">✓</div>
+        <div>
+          <p class="helped-num">Já ajudamos <strong id="helpedCount">2.847</strong> pessoas</p>
+          <p class="helped-sub">a estimar o acerto e conferir o que a empresa deve pagar</p>
+        </div>
+      </div>
     </section>
 
     <section class="chat-trust" id="mensagens" aria-label="Mensagens de confiança">
@@ -498,7 +506,29 @@ document.querySelectorAll(".seg-btn").forEach(function(btn){
 <script>
 
 /* Social toast — rotating activity + purchase-style notices */
-(function socialProofToast(){
+
+(function helpedCounter(){
+  const el = document.getElementById('helpedCount');
+  if (!el) return;
+  const target = 2847;
+  const start = target - 120;
+  let n = start;
+  const step = function(){
+    n += 3;
+    if (n >= target) { el.textContent = target.toLocaleString('pt-BR'); return; }
+    el.textContent = n.toLocaleString('pt-BR');
+    requestAnimationFrame(step);
+  };
+  // slow drip: occasionally bump +1 to look "live"
+  el.textContent = target.toLocaleString('pt-BR');
+  setInterval(function(){
+    if (document.hidden) return;
+    const cur = parseInt(el.textContent.replace(/\./g,''), 10) || target;
+    el.textContent = (cur + 1).toLocaleString('pt-BR');
+  }, 28000);
+})();
+
+(function socialProofToast({
   const el = document.getElementById('socialToast');
   if (!el) return;
   const names = [
