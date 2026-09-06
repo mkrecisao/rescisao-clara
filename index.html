@@ -41,15 +41,61 @@
     </header>
 
     <section class="hero" id="conteudo">
-      <span class="badge">Grátis · resultado em segundos</span>
+      <span class="badge badge-moment">Agora é o momento</span>
       <h1>Não assine o acerto <span class="hl">no escuro</span></h1>
-      <p class="sub">Veja o total agora. Depois leve o <strong>kit do acerto</strong> pro RH — checklist e o que falar se faltar dinheiro.</p>
-      <ul class="trust">
-        <li class="trust-hot">Total grátis na tela</li>
-        <li class="trust-hot">Kit R$5 · PIX na hora</li>
-        <li>Estimativa · não é valor oficial</li>
-      </ul>
-      <a class="hero-cta" href="#formCalc">Calcular minha rescisão ↓</a>
+      <p class="sub">Veja o total grátis. Leve o <strong>kit do acerto</strong> no celular — checklist e o que falar no RH se faltar verba. PIX R$5, PDF na hora.</p>
+      <a class="hero-cta cta-lime" href="#formCalc">Calcular minha rescisão →</a>
+      <div class="proof-strip">
+        <div class="proof-badge">
+          <span class="proof-num">3 passos</span>
+          <span class="proof-label">calcular · conferir · acertar</span>
+        </div>
+        <div class="proof-cards">
+          <div class="proof-card"><span>Total na tela</span><strong>Grátis</strong></div>
+          <div class="proof-card"><span>Kit do acerto</span><strong>R$5</strong></div>
+          <div class="proof-card"><span>Entrega</span><strong>PDF na hora</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="chat-trust" id="mensagens" aria-label="Mensagens de confiança">
+      <p class="kicker">No celular, parece conversa de verdade</p>
+      <h2 class="chat-title">O que quem vai no acerto costuma mandar</h2>
+      <p class="chat-sub">Exemplos no formato de mensagem — situações típicas do dia do acerto. Não são avaliações de compra.</p>
+      <div class="phone">
+        <div class="phone-bar"><span></span><span></span><span></span></div>
+        <div class="chat">
+          <div class="bubble in">
+            <p class="who">Ana · demissão sem justa</p>
+            <p>Cheguei no RH e o papel não batia com o que eu tinha na cabeça…</p>
+            <span class="when">09:14</span>
+          </div>
+          <div class="bubble out">
+            <p>Por isso o kit traz a <strong>conta ao lado</strong> de cada verba — pra apontar no recibo antes de assinar.</p>
+            <span class="when">09:14</span>
+          </div>
+          <div class="bubble in">
+            <p class="who">Carlos · pedido de demissão</p>
+            <p>Eles queriam descontar aviso. Eu não sabia o que falar.</p>
+            <span class="when">11:02</span>
+          </div>
+          <div class="bubble out">
+            <p>No PDF tem <strong>frases prontas pro RH</strong> + prazo dos 10 dias e se cabe multa de 1 salário.</p>
+            <span class="when">11:03</span>
+          </div>
+          <div class="bubble in">
+            <p class="who">Juliana · acordo 484-A</p>
+            <p>Achei que era a mesma coisa que sem justa. Quase assinei.</p>
+            <span class="when">15:40</span>
+          </div>
+          <div class="bubble out">
+            <p>O kit compara <strong>sem justa × pedido × acordo</strong> na mesma folha. Multa e FGTS mudam.</p>
+            <span class="when">15:41</span>
+          </div>
+        </div>
+        <a class="cta-lime chat-cta" href="#oferta">Quero o kit do acerto — R$5</a>
+      </div>
+      <p class="chat-note">Quando houver compras reais, trocamos estas bolhas por depoimentos de quem pagou no PIX.</p>
     </section>
 
     <div class="layout">
@@ -179,7 +225,7 @@
               <p class="prev-note">Isso é só uma amostra. O PDF completo traz seu cálculo, as 3 saídas, prazo dos 10 dias e seguro-desemprego.</p>
             </div>
 
-            <button class="btn" type="button" onclick="irParaCheckout()" style="width:100%">Quero o kit do acerto — R$5,00</button>
+            <button class="btn" type="button" onclick="irParaCheckout()" class="cta-lime" style="width:100%">Quero o kit do acerto — R$5,00</button>
             <p class="fine">PIX na Kiwify. Nome e CPF só no checkout pra gerar o QR. O PDF abre em seguida.</p>
           </div>
 
@@ -242,7 +288,7 @@
         <p class="prev-note">Isso é só uma amostra. O PDF completo traz seu cálculo, as 3 saídas, prazo dos 10 dias e seguro-desemprego.</p>
       </div>
 
-      <button class="btn" type="button" id="btnCheckout" onclick="irParaCheckout()">Quero o kit do acerto — R$5,00</button>
+      <button class="btn" type="button" id="btnCheckout" onclick="irParaCheckout()" class="cta-lime">Quero o kit do acerto — R$5,00</button>
       <p class="fine">R$5,00 no lançamento. O total na tela é grátis. O kit é o roteiro pro dia do acerto. PIX na Kiwify — CPF só no checkout.</p>
       <p id="checkoutMsg" class="hidden" role="status"></p>
     </section>
