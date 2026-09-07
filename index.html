@@ -43,7 +43,7 @@
     <section class="hero" id="conteudo">
       <span class="badge badge-moment">Agora é o momento</span>
       <h1>Não assine o acerto <span class="hl">no escuro</span></h1>
-      <p class="sub">Veja o total grátis. Leve o <strong>kit do acerto</strong> no celular — checklist e o que falar no RH se faltar verba. PIX R$9,90, PDF na hora.</p>
+      <p class="sub">Veja o total grátis. Leve o <strong>kit do acerto</strong> no celular — checklist e o que falar no RH se faltar verba. R$9,90 no WhatsApp, PDF na hora.</p>
       <a class="hero-cta cta-lime" href="#formCalc">Calcular minha rescisão →</a>
       <div class="proof-strip">
         <div class="proof-badge">
@@ -234,7 +234,7 @@
             </div>
 
             <button class="btn cta-lime" type="button" onclick="irParaCheckout()" style="width:100%">Quero o kit do acerto — R$9,90</button>
-            <p class="fine">PIX na Kiwify. Nome e CPF só no checkout pra gerar o QR. O PDF abre em seguida.</p>
+            <p class="fine">Fecha no WhatsApp. Atendimento 1:1 — R$9,90, PDF na hora após o PIX.</p>
           </div>
 
           <div class="card" style="margin-top:14px">
@@ -297,7 +297,7 @@
       </div>
 
       <button class="btn cta-lime" type="button" id="btnCheckout" onclick="irParaCheckout()">Quero o kit do acerto — R$9,90</button>
-      <p class="fine">R$9,90. O total na tela é grátis. O kit é o roteiro pro dia do acerto. PIX na Kiwify — CPF só no checkout.</p>
+      <p class="fine">R$9,90. O total na tela é grátis. O kit fecha no WhatsApp com atendimento 1:1.</p>
       <p id="checkoutMsg" class="hidden" role="status"></p>
     </section>
 
@@ -319,7 +319,7 @@
 /* COLE AQUI O LINK DA KIWIFY (checkout do relatório PDF personalizado, R$9,90).
    Se ficar vazio, o botão avisa que o checkout ainda não está ligado.
    Não coloque link de teste, de outro produto, nem URL inventada. */
-const CHECKOUT_URL = "https://pay.kiwify.com.br/3aiHsx1";
+const CHECKOUT_URL = "https://wa.me/555197742550?text=Oi%21%20Quero%20o%20kit%20do%20acerto%20%28R%249%2C90%29";
 
 function brl(n){
   return n.toLocaleString("pt-BR", {style:"currency", currency:"BRL"});
