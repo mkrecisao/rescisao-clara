@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=20260908c" />
+  <link rel="stylesheet" href="styles.css?v=20260908d" />
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18421219722"></script>
   <script>
@@ -49,7 +49,7 @@
       <h1>Não assine o acerto <span>no escuro</span></h1>
       <p class="lead">Veja o total grátis. Leve o <strong>kit do acerto</strong> no celular — checklist e o que falar no RH se faltar verba. R$9,90 no WhatsApp, PDF na hora.</p>
       <div class="hero-video">
-        <video controls playsinline preload="metadata" title="Apresentação do Kit do Acerto">
+        <video controls autoplay muted playsinline loop preload="auto" title="Apresentação do Kit do Acerto">
           <source src="apresentacao-rescisao-clara.mp4" type="video/mp4" />
           Seu navegador não reproduz vídeo HTML5.
         </video>
@@ -591,5 +591,15 @@ document.querySelectorAll(".seg-btn").forEach(function(btn){
   }, 8500);
 })();
 </script>
+
+  <script>
+    (function () {
+      var v = document.querySelector(".hero-video video");
+      if (!v) return;
+      v.muted = true;
+      var p = v.play();
+      if (p && p.catch) p.catch(function () {});
+    })();
+  </script>
 </body>
 </html>
