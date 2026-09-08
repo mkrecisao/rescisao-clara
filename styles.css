@@ -541,8 +541,13 @@ button.calc {
 .st-title { margin: 0; font-size: 13px; font-weight: 800; }
 .st-sub { margin: 2px 0 0; font-size: 12px; color: var(--muted); line-height: 1.35; }
 @media (max-width: 420px) {
-  .social-toast { right: 10px; left: 10px; width: auto; max-width: none; bottom: 10px; top: auto; }
+  .social-toast { right: 10px; left: 10px; width: auto; max-width: none; bottom: 78px; top: auto; }
 }
+.social-toast { bottom: 78px; }
+@media (min-width: 860px) {
+  .social-toast { top: 72px; bottom: auto; }
+}
+
 
 .help-card {
   background: var(--card);
@@ -603,4 +608,27 @@ svg.check {
   color: #25D366 !important;
   font-weight: 700;
   text-decoration: underline;
+}
+
+.wa-fab {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 80;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #25D366;
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 10px 28px rgba(37, 211, 102, .45);
+  transition: transform .15s ease, filter .15s ease;
+}
+.wa-fab:hover { transform: scale(1.06); filter: brightness(1.05); color: #fff; }
+.wa-fab svg { width: 28px; height: 28px; display: block; }
+.wa-fab:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+@media (max-width: 420px) {
+  .wa-fab { right: 14px; bottom: 14px; width: 54px; height: 54px; }
 }
