@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=20260908check" />
+  <link rel="stylesheet" href="styles.css?v=20260908buy" />
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18421219722"></script>
   <script>
@@ -244,7 +244,7 @@
                 <p class="prev-note">Isso é só uma amostra. O PDF completo traz seu cálculo, as 3 saídas, prazo dos 10 dias e seguro-desemprego.</p>
               </div>
 
-              <button class="btn btn-primary btn-block" type="button" onclick="irParaCheckout()" style="margin-top:12px">Quero o kit do acerto — R$9,90</button>
+              <a class="btn btn-primary btn-block" href="https://pay.kiwify.com.br/3aiHsx1" id="ctaCheckoutPos" onclick="return irParaCheckout(event)" style="margin-top:12px">Comprar com PIX — R$9,90</a>
               <p class="fine">Fecha no WhatsApp. Atendimento 1:1 — R$9,90, PDF na hora após o PIX.</p>
             </div>
 
@@ -298,8 +298,8 @@
           <p class="prev-note">Isso é só uma amostra. O PDF completo traz seu cálculo, as 3 saídas, prazo dos 10 dias e seguro-desemprego.</p>
         </div>
 
-        <button class="btn btn-primary btn-block" type="button" id="btnCheckout" onclick="irParaCheckout()">Quero o kit do acerto — R$9,90</button>
-        <p class="fine">R$9,90. O total na tela é grátis. O kit fecha no WhatsApp com atendimento 1:1. <a class="wa-help-link" href="https://wa.me/555197742550?text=Oi%21%20Preciso%20de%20ajuda%20com%20o%20kit%20do%20acerto">Para ajuda ou dúvidas, nos chame no WhatsApp</a>.</p>
+        <a class="btn btn-primary btn-block" href="https://pay.kiwify.com.br/3aiHsx1" id="btnCheckout" onclick="return irParaCheckout(event)">Comprar com PIX — R$9,90</a>
+        <p class="fine">R$9,90. O total na tela é grátis. A compra é na Kiwify (PIX). <a class="wa-help-link" href="https://wa.me/555197742550?text=Oi%21%20Preciso%20de%20ajuda%20com%20o%20kit%20do%20acerto">Para ajuda ou dúvidas, nos chame no WhatsApp</a>.</p>
         <p id="checkoutMsg" class="hidden" role="status"></p>
       </div>
     </section>
@@ -312,7 +312,7 @@
       </details>
       <details>
         <summary>Como recebo o PDF?</summary>
-        <p>Fecha no WhatsApp. Após o PIX, o PDF é enviado na hora no atendimento 1:1.</p>
+        <p>Você paga o PIX na Kiwify e o PDF libera na hora. Se precisar de ajuda, chame no WhatsApp.</p>
       </details>
       <details>
         <summary>Isso substitui advogado ou o recibo oficial?</summary>
@@ -325,7 +325,7 @@
         <p class="kicker">Atendimento</p>
         <h2>Precisa de ajuda?</h2>
         <p class="offer-desc"><a class="wa-help-link" href="https://wa.me/555197742550?text=Oi%21%20Preciso%20de%20ajuda%20com%20o%20kit%20do%20acerto">Para ajuda ou dúvidas, nos chame no WhatsApp</a></p>
-        <a class="btn btn-ghost btn-block" href="https://wa.me/555197742550?text=Oi%21%20Preciso%20de%20ajuda%20com%20o%20kit%20do%20acerto" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+        <a class="btn btn-wa btn-block" href="https://wa.me/555197742550?text=Oi%21%20Preciso%20de%20ajuda%20com%20o%20kit%20do%20acerto" target="_blank" rel="noopener">Chamar no WhatsApp</a>
       </div>
     </section>
   </main>
@@ -344,7 +344,7 @@
   </div>
 
 <script>
-const CHECKOUT_URL = "https://wa.me/555197742550?text=Oi%21%20Quero%20o%20kit%20do%20acerto%20%28R%249%2C90%29";
+const CHECKOUT_URL = "https://pay.kiwify.com.br/3aiHsx1";
 
 function brl(n){
   return n.toLocaleString("pt-BR", {style:"currency", currency:"BRL"});
@@ -483,7 +483,8 @@ document.getElementById("saida").addEventListener("change", e => {
 });
 calcular(false);
 
-function irParaCheckout(){
+function irParaCheckout(e){
+  if (e && e.preventDefault) e.preventDefault();
   const payload = {
     salario: document.getElementById("salario").value,
     admissao: document.getElementById("admissao").value,
@@ -498,10 +499,11 @@ function irParaCheckout(){
   const url = (CHECKOUT_URL || "").trim();
   const msg = document.getElementById("checkoutMsg");
   if (!url) {
-    msg.textContent = "O checkout ainda não está ligado. Tente de novo em instantes.";
-    msg.classList.remove("hidden");
-    msg.focus();
-    return;
+    if (msg) {
+      msg.textContent = "O checkout ainda não está ligado. Tente de novo em instantes.";
+      msg.classList.remove("hidden");
+    }
+    return false;
   }
   function irAposHit(){ window.location.href = url; }
   if (typeof gtag === "function") {
@@ -516,6 +518,7 @@ function irParaCheckout(){
   } else {
     irAposHit();
   }
+  return false;
 }
 document.querySelectorAll(".seg-btn").forEach(function(btn){
   btn.addEventListener("click", function(){
