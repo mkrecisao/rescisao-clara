@@ -16,6 +16,7 @@
 html { scroll-behavior: smooth; }
 body {
   margin: 0;
+  overflow-x: hidden;
   font-family: var(--font);
   color: var(--text);
   background: var(--bg);
@@ -317,6 +318,7 @@ label {
   color: var(--text); margin: 14px 0 6px;
 }
 #formCalc input, #formCalc select, .calc-card input, .calc-card select {
+  color-scheme: dark;
   width: 100%; border-radius: 12px; border: 1px solid var(--line);
   background: var(--bg); color: var(--text);
   padding: 12px 14px; font-size: 16px; font-family: var(--font);
@@ -452,11 +454,15 @@ button.calc:hover { filter: brightness(1.04); }
 
 .calc-layout {
   display: grid; gap: 14px;
-  max-width: 720px; margin: 0 auto; padding: 0 20px 28px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 @media (min-width: 860px) {
   .calc-layout {
-    grid-template-columns: 1fr 1fr; max-width: 960px; align-items: start;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    gap: 18px;
   }
 }
 #checkoutMsg {
@@ -511,9 +517,15 @@ button.calc:hover { filter: brightness(1.04); }
 .social-toast[data-kind="buy"] .st-sub { color: var(--orange2); }
 
 .block.wide-calc {
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.block.wide-calc > h2,
+.block.wide-calc > .lead {
   max-width: none;
-  padding-left: max(20px, calc(50% - 480px));
-  padding-right: max(20px, calc(50% - 480px));
 }
 
 
@@ -535,3 +547,26 @@ button.calc:hover { filter: brightness(1.04); }
 }
 .wa-help-link:hover { color: var(--orange); }
 .help-card .btn-ghost { margin-top: 0; }
+
+.foot .legal {
+  font-size: 11px;
+  line-height: 1.45;
+  opacity: .75;
+  max-width: 42em;
+  margin: 10px auto 0;
+}
+.help-wa { padding-top: 8px; }
+.wa-help-link {
+  color: var(--cyan);
+  font-weight: 600;
+  text-decoration: none;
+}
+.wa-help-link:hover { text-decoration: underline; }
+.results-col { min-width: 0; }
+.form-col { min-width: 0; }
+.table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.cmp-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.cmp-table th, .cmp-table td {
+  border: 1px solid var(--line); padding: 8px 10px; text-align: left;
+}
+.cmp-table th { background: var(--bg2); color: var(--muted); font-weight: 600; }
