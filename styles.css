@@ -515,3 +515,23 @@ button.calc:hover { filter: brightness(1.04); }
   padding-left: max(20px, calc(50% - 480px));
   padding-right: max(20px, calc(50% - 480px));
 }
+
+
+/* WhatsApp help card */
+.help-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px;
+  text-align: center;
+}
+.help-card h2 { margin-bottom: 8px; }
+.help-card .offer-desc { margin-bottom: 16px; }
+.wa-help-link {
+  color: var(--orange2);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 600;
+}
+.wa-help-link:hover { color: var(--orange); }
+.help-card .btn-ghost { margin-top: 0; }
