@@ -1136,3 +1136,34 @@ html.office-skin table th { color: #5C6B7E !important; }
 html.office-skin .social-toast {
   z-index: 99999 !important;
 }
+
+.kits-nav {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+}
+.kits-link {
+  text-decoration: none; font-size: 13px; font-weight: 600;
+  color: #1B2A4A; padding: 7px 12px; border-radius: 999px;
+  border: 1px solid rgba(27,42,74,.18); background: #fff;
+}
+.kits-link.is-on {
+  background: #1B2A4A; color: #fff; border-color: #1B2A4A;
+}
+.kits-cta {
+  text-decoration: none; font-size: 13px; font-weight: 700;
+  color: #0b1c33; padding: 7px 12px; border-radius: 999px;
+  background: #F5C542;
+}
+.hero-video {
+  margin: 16px 0 18px; border-radius: 16px; overflow: hidden;
+  border: 1px solid rgba(27,42,74,.12); background: #0b1c33;
+  box-shadow: 0 14px 36px rgba(11,28,51,.12);
+}
+.hero-video video { display:block; width:100%; height:auto; max-height:420px; background:#000; }
+.video-caption {
+  margin:0; padding:10px 12px; font-size:13px; color:#5a6478;
+  background:#F7F4EC; border-top:1px solid rgba(27,42,74,.08);
+}
+@media (max-width: 640px) {
+  .site-header { flex-wrap: wrap; gap: 10px; }
+  .kits-nav { width: 100%; }
+}
