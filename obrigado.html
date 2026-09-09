@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=20260909pdf" />
+  <link rel="stylesheet" href="styles.css?v=20260909gerarpdf" />
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18421219722"></script>
   <script>
@@ -58,6 +58,7 @@
       box-shadow: 0 8px 28px rgba(255, 138, 31, .35);
     }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
 </head>
 <body>
   <a class="skip" href="#conteudo">Pular para o conteúdo</a>
@@ -84,6 +85,10 @@
       <p style="margin: 18px 0 0;">
         <a class="btn btn-primary btn-block btn-pdf" href="kit-do-acerto.pdf" download="kit-do-acerto.pdf">Baixar PDF agora</a>
       </p>
+      <p style="margin: 12px 0 0;">
+        <button type="button" class="btn btn-ghost btn-block" id="btnGerarPdfObrigado" style="border-color:rgba(255,138,31,.45);color:var(--orange2)">Gerar PDF com meu cálculo</button>
+      </p>
+      <p id="pdfCalcMsg" class="pdf-fallback" hidden></p>
       <p class="pdf-fallback">Se sair da página, o PDF também chega no e-mail / área do comprador da Kiwify.</p>
     </section>
 
@@ -113,5 +118,199 @@
   <a class="wa-fab" href="https://wa.me/555197742550?text=Oi%21%20Acabei%20de%20comprar%20o%20kit%20do%20acerto%20e%20preciso%20de%20ajuda" target="_blank" rel="noopener" aria-label="Ajuda no WhatsApp" title="WhatsApp">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.52 3.48A11.86 11.86 0 0 0 12.04 0C5.5 0 .16 5.34.16 11.9c0 2.1.55 4.15 1.6 5.96L0 24l6.3-1.65a11.9 11.9 0 0 0 5.74 1.46h.01c6.54 0 11.88-5.34 11.88-11.9 0-3.18-1.24-6.16-3.41-8.43zM12.05 21.15h-.01a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.74.98 1-3.64-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.89 6.98c0 5.45-4.44 9.88-9.88 9.88zm5.42-7.4c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.04-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.5h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.87 1.22 3.07c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35z"/></svg>
   </a>
+
+<script>
+(function(){
+  const TIPO_LABELS = {
+    sem_justa: "Demissão sem justa causa",
+    pedido: "Pedido de demissão",
+    acordo: "Acordo 484-A",
+    justa: "Justa causa",
+    indireta: "Rescisão indireta"
+  };
+  function brl(n){ return Number(n||0).toLocaleString("pt-BR",{style:"currency",currency:"BRL"}); }
+  function parseISO(v){
+    if(!v) return null;
+    const p = String(v).split("-").map(Number);
+    if(p.length!==3) return null;
+    return new Date(p[0], p[1]-1, p[2]);
+  }
+  function fmtDateBR(iso){
+    if(!iso) return "—";
+    if(iso instanceof Date) return iso.toLocaleDateString("pt-BR");
+    const p = String(iso).split("-");
+    if(p.length!==3) return String(iso);
+    return p[2]+"/"+p[1]+"/"+p[0];
+  }
+  function yearsComplete(a,b){
+    let y = b.getFullYear()-a.getFullYear();
+    const md = (b.getMonth()-a.getMonth())*32+(b.getDate()-a.getDate());
+    if(md<0) y-=1;
+    return Math.max(0,y);
+  }
+  function addDays(dt,days){ const x=new Date(dt.getTime()); x.setDate(x.getDate()+days); return x; }
+  function avos13(admissao,fim){
+    const startYear=new Date(fim.getFullYear(),0,1);
+    const inicio=admissao.getFullYear()===fim.getFullYear()?admissao:startYear;
+    let months=(fim.getFullYear()-inicio.getFullYear())*12+(fim.getMonth()-inicio.getMonth());
+    if(fim.getDate()>=15) months+=1;
+    if(inicio!==startYear && inicio.getDate()>15) months-=1;
+    return Math.max(0,Math.min(12,months));
+  }
+  function lastAnniversary(admissao,fim){
+    let a=new Date(fim.getFullYear(),admissao.getMonth(),admissao.getDate());
+    if(a>fim) a=new Date(fim.getFullYear()-1,admissao.getMonth(),admissao.getDate());
+    return a;
+  }
+  function avosFerias(admissao,fim){
+    const ini=lastAnniversary(admissao,fim);
+    let months=(fim.getFullYear()-ini.getFullYear())*12+(fim.getMonth()-ini.getMonth());
+    if(fim.getDate()>=15) months+=1;
+    return Math.max(0,Math.min(12,months));
+  }
+  function pack(tipo,salario,admissao,saida,cumpriu,feriasVenc,diasMes,fgts){
+    const full=tipo==="sem_justa"||tipo==="indireta";
+    const pedido=tipo==="pedido";
+    const acordo=tipo==="acordo";
+    const justa=tipo==="justa";
+    const anos=yearsComplete(admissao,saida);
+    const avisoCheio=Math.min(90,30+3*anos);
+    let avisoDias=0;
+    if(full && !cumpriu) avisoDias=avisoCheio;
+    if(acordo && !cumpriu) avisoDias=Math.round(avisoCheio/2);
+    const projetada=avisoDias>0?addDays(saida,avisoDias):saida;
+    const a13=justa?0:avos13(admissao,projetada);
+    const aFer=justa?0:avosFerias(admissao,projetada);
+    const saldo=salario/30*diasMes;
+    const avisoVal=salario/30*avisoDias;
+    const decimo=salario/12*a13;
+    const ferVenc=salario*feriasVenc*(4/3);
+    const ferProp=(salario/12*aFer)*(4/3);
+    const multa=full?fgts*0.4:acordo?fgts*0.2:0;
+    const saque=full?fgts:acordo?fgts*0.8:0;
+    const descAviso=(pedido && !cumpriu)?-salario:0;
+    const empresa=saldo+avisoVal+decimo+ferVenc+ferProp+multa+descAviso;
+    return {anos,avisoCheio,avisoDias,projetada,a13,aFer,saldo,avisoVal,decimo,ferVenc,ferProp,multa,saque,descAviso,empresa,total:empresa+saque};
+  }
+
+  function gerarPdfRescisaoClara(payload,r,cmpPacks){
+    if(!window.jspdf||!window.jspdf.jsPDF){ alert("Biblioteca de PDF ainda carregando. Tente de novo."); return; }
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({ unit:"mm", format:"a4" });
+    const W=doc.internal.pageSize.getWidth(), M=14;
+    let y=16;
+    const ink=[22,26,36], muted=[88,96,110], accent=[210,100,20], soft=[230,234,240], darkBg=[7,11,20];
+    function ensure(h){ if(y+h>285){ doc.addPage(); y=16; } }
+    function section(t){ ensure(12); doc.setFillColor(...soft); doc.roundedRect(M,y-4,W-M*2,8,1.5,1.5,"F"); doc.setFont("helvetica","bold"); doc.setFontSize(10); doc.setTextColor(...accent); doc.text(t,M+2,y+1.5); y+=8; }
+    function row(label,value,opts){ opts=opts||{}; ensure(6.2); doc.setFont("helvetica",opts.bold?"bold":"normal"); doc.setFontSize(opts.size||9.5); doc.setTextColor(...ink); doc.text(String(label),M+1,y); doc.setTextColor(...(opts.bad?[180,40,40]:(opts.gold?accent:ink))); doc.text(String(value),W-M-1,y,{align:"right"}); y+=5.4; }
+    function para(txt){ ensure(10); doc.setFont("helvetica","normal"); doc.setFontSize(8); doc.setTextColor(...muted); const lines=doc.splitTextToSize(txt,W-M*2-2); doc.text(lines,M+1,y); y+=lines.length*3.8+2; }
+
+    doc.setFillColor(...darkBg); doc.rect(0,0,W,26,"F");
+    doc.setTextColor(255,255,255); doc.setFont("helvetica","bold"); doc.setFontSize(14);
+    doc.text("Rescisão Clara — estimativa personalizada", M, 11);
+    doc.setFont("helvetica","normal"); doc.setFontSize(8.5); doc.setTextColor(170,182,198);
+    doc.text("Gerado em "+new Date().toLocaleString("pt-BR",{timeZone:"America/Sao_Paulo"})+"  ·  mesmos números da calculadora", M, 18);
+    y=34;
+
+    section("1) DADOS DO CONTRATO");
+    row("Salário mensal bruto (R$)", brl(Number(payload.salario||0)));
+    row("Data de admissão", fmtDateBR(payload.admissao));
+    row("Data da saída (último dia do contrato)", fmtDateBR(payload.saida));
+    row("Tipo de rescisão", TIPO_LABELS[payload.tipo]||payload.tipo);
+    row("Vai cumprir / trabalhou o aviso?", payload.aviso==="sim"?"Sim":"Não");
+    row("Períodos de férias vencidas (0, 1, 2...)", String(payload.feriasVenc||0));
+    row("Saldo do FGTS na conta (R$)", brl(Number(payload.fgts||0)));
+    row("Dias trabalhados no mês da saída", String(payload.diasMes||0));
+    y+=2;
+
+    section("2) O QUE ENTRA NESTA SAÍDA");
+    row("Saldo de salário", brl(r.saldo));
+    row("Aviso prévio indenizado", brl(r.avisoVal));
+    row("13º salário proporcional", brl(r.decimo));
+    row("Férias vencidas + 1/3", brl(r.ferVenc));
+    row("Férias proporcionais + 1/3", brl(r.ferProp));
+    row("Multa do FGTS (paga pela empresa)", brl(r.multa));
+    row("Desconto de aviso (pedido não cumprido)", brl(r.descAviso), {bad:r.descAviso<0});
+    y+=1;
+    row("TOTAL das verbas pagas pela empresa", brl(r.empresa), {bold:true,gold:true});
+    row("Saque do FGTS (conta vinculada)", brl(r.saque), {bold:true});
+    row("TOTAL ESTIMADO (verbas + saque FGTS)", brl(r.total), {bold:true,gold:true,size:10.5});
+    y+=2;
+
+    section("3) BASES DO CÁLCULO");
+    row("Anos completos na empresa", String(r.anos));
+    row("Aviso proporcional cheio (30 + 3×anos, máx. 90)", r.avisoCheio+" dias");
+    row("Dias de aviso indenizado nesta modalidade", r.avisoDias+" dias");
+    row("Avos de 13º considerados", r.a13+"/12");
+    row("Avos de férias proporcionais", r.aFer+"/12");
+    row("Data projetada (saída + aviso indenizado)", fmtDateBR(r.projetada));
+    y+=2;
+
+    section("4) COMPARAÇÃO RÁPIDA (mesmo salário, mesmas datas)");
+    const A=cmpPacks.A,B=cmpPacks.B,C=cmpPacks.C;
+    ensure(28);
+    const c0=M+1,c1=M+58,c2=M+102,c3=M+146;
+    doc.setFont("helvetica","bold"); doc.setFontSize(8); doc.setTextColor(...muted);
+    doc.text("Verba",c0,y); doc.text("Sem justa causa",c1,y); doc.text("Pedido",c2,y); doc.text("Acordo 484-A",c3,y);
+    y+=4; doc.setDrawColor(200,205,214); doc.line(M,y,W-M,y); y+=5;
+    function cmpRow(label,a,b,c,bold){ ensure(6); doc.setFont("helvetica",bold?"bold":"normal"); doc.setFontSize(8); doc.setTextColor(...ink); doc.text(label,c0,y); doc.text(brl(a),c1,y); doc.text(brl(b),c2,y); doc.text(brl(c),c3,y); y+=5.2; }
+    cmpRow("Aviso indenizado",A.avisoVal,B.avisoVal,C.avisoVal,false);
+    cmpRow("13º + férias prop. + saldo + férias venc.", A.saldo+A.decimo+A.ferVenc+A.ferProp, B.saldo+B.decimo+B.ferVenc+B.ferProp, C.saldo+C.decimo+C.ferVenc+C.ferProp, false);
+    cmpRow("Multa FGTS",A.multa,B.multa,C.multa,false);
+    cmpRow("Saque FGTS",A.saque,B.saque,C.saque,false);
+    cmpRow("Desconto aviso",A.descAviso,B.descAviso,C.descAviso,false);
+    cmpRow("Verbas empresa",A.empresa,B.empresa,C.empresa,false);
+    cmpRow("TOTAL ESTIMADO",A.total,B.total,C.total,true);
+    y+=3;
+
+    section("5) O QUE ESTA ESTIMATIVA NÃO FAZ");
+    para("Não calcula INSS, IRRF, média de horas extras, adicional noturno, DSR, comissões, férias em dobro, estabilidade, norma coletiva (CCT), saque-aniversário travando FGTS, nem parcelas do seguro-desemprego. Aviso projetado altera avos de 13º e férias. No pedido de demissão o saque do FGTS fica bloqueado na regra geral. Prazo de pagamento das verbas: 10 dias corridos após o fim do contrato (art. 477, §6º, CLT). Use como estimativa e confira o TRCT. Conteúdo informativo — não substitui advogado, contador nem o recibo oficial.");
+    doc.setFont("helvetica","normal"); doc.setFontSize(7); doc.setTextColor(...muted);
+    doc.text("Rescisão Clara · mkrecisao.github.io/rescisao-clara · PDF gerado no seu aparelho", M, 290);
+    doc.save("rescisao-clara-meu-calculo.pdf");
+  }
+
+  const btn = document.getElementById("btnGerarPdfObrigado");
+  const msg = document.getElementById("pdfCalcMsg");
+  if(!btn) return;
+  btn.addEventListener("click", function(){
+    let raw = null;
+    try { raw = localStorage.getItem("rc_calc"); } catch(e) {}
+    if(!raw){
+      if(msg){
+        msg.hidden = false;
+        msg.innerHTML = 'Não encontramos um cálculo salvo neste aparelho. <a href="index.html#calculadora" style="color:var(--orange2);font-weight:600">Abra a calculadora</a>, calcule e volte aqui.';
+      }
+      return;
+    }
+    let payload;
+    try { payload = JSON.parse(raw); } catch(e){ payload = null; }
+    if(!payload){
+      if(msg){ msg.hidden=false; msg.textContent="Dados do cálculo inválidos. Calcule de novo na calculadora."; }
+      return;
+    }
+    const salario=Number(payload.salario||0);
+    const admissao=parseISO(payload.admissao);
+    const saida=parseISO(payload.saida);
+    if(!admissao||!saida){
+      if(msg){ msg.hidden=false; msg.innerHTML='Datas incompletas. <a href="index.html#calculadora" style="color:var(--orange2);font-weight:600">Calcule de novo</a>.'; }
+      return;
+    }
+    const tipo=payload.tipo||"sem_justa";
+    const cumpriu=payload.aviso==="sim";
+    const feriasVenc=Number(payload.feriasVenc||0);
+    let diasMes=Number(payload.diasMes||0);
+    const fgts=Number(payload.fgts||0);
+    if(!diasMes) diasMes=saida.getDate();
+    const r=pack(tipo,salario,admissao,saida,cumpriu,feriasVenc,diasMes,fgts);
+    const A=pack("sem_justa",salario,admissao,saida,cumpriu,feriasVenc,diasMes,fgts);
+    const B=pack("pedido",salario,admissao,saida,cumpriu,feriasVenc,diasMes,fgts);
+    const C=pack("acordo",salario,admissao,saida,cumpriu,feriasVenc,diasMes,fgts);
+    if(msg){ msg.hidden=true; msg.textContent=""; }
+    gerarPdfRescisaoClara(Object.assign({}, payload, {diasMes:diasMes}), r, {A:A,B:B,C:C});
+  });
+})();
+</script>
+
 </body>
 </html>
