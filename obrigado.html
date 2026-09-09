@@ -3,21 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#0B1C33" />
-  <meta name="description" content="Relatório personalizado da sua rescisão CLT — Rescisão Clara. Estimativa informativa para conferir no TRCT." />
-  <title>Seu relatório — Rescisão Clara</title>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230B1C33'/%3E%3Crect x='1' y='1' width='30' height='30' rx='7' fill='none' stroke='%23F5C542' stroke-width='1.5'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-size='13' font-family='Arial' font-weight='700' fill='%23F5C542'%3ERC%3C/text%3E%3C/svg%3E" />
-  <meta property="og:title" content="Seu relatório — Rescisão Clara" />
-  <meta property="og:description" content="Relatório personalizado da rescisão CLT. Estimativa informativa." />
+  <meta name="theme-color" content="#070b14" />
+  <meta name="description" content="Pagamento confirmado — Rescisão Clara. Seu PDF libera na Kiwify." />
+  <meta name="robots" content="noindex" />
+  <title>Obrigado — Rescisão Clara</title>
+  <link rel="icon" href="logo.png" type="image/png" />
+  <meta property="og:title" content="Obrigado — Rescisão Clara" />
+  <meta property="og:description" content="Pagamento confirmado. Seu PDF libera na Kiwify." />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="pt_BR" />
-  <meta property="og:url" content="https://brewpage.app/rescisao-clara/63dbGrS7AE/obrigado.html" />
-  <meta property="og:image" content="https://brewpage.app/rescisao-clara/63dbGrS7AE/og-image.png" />
+  <meta property="og:url" content="https://mkrecisao.github.io/rescisao-clara/obrigado.html" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
-  <script src="jspdf.umd.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=20260909obrigado" />
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18421219722"></script>
   <script>
@@ -26,653 +25,80 @@
     gtag('js', new Date());
     gtag('config', 'AW-18421219722');
   </script>
+  <style>
+    .thanks-badge {
+      width: 56px; height: 56px; border-radius: 16px;
+      display: grid; place-items: center;
+      margin: 0 0 16px;
+      background: rgba(61, 214, 198, .12);
+      border: 1px solid rgba(61, 214, 198, .35);
+      color: var(--cyan); font-size: 28px; font-weight: 800;
+    }
+    .thanks-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 22px 20px;
+      margin: 0 0 18px;
+    }
+    .thanks-card h2 { margin: 0 0 12px; font-size: 1.15rem; }
+    .cross-sell {
+      color: var(--muted); font-size: 14px; margin: 0;
+      line-height: 1.55;
+    }
+    .cross-sell a { color: var(--orange2); font-weight: 600; }
+    .sec-links { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0 0; }
+  </style>
 </head>
 <body>
   <a class="skip" href="#conteudo">Pular para o conteúdo</a>
-  <div class="wrap">
-    <header class="site-header">
-      <a class="logo" href="index.html">
-        <span class="mark">RC</span>
-        <span><strong>Rescisão Clara</strong><em>CLT sem enrolação</em></span>
-      </a>
-      <nav><a href="index.html">Calculadora</a></nav>
-    </header>
+  <div class="glow" aria-hidden="true"></div>
 
+  <header class="top">
+    <div class="brand">
+      <img class="logo-mark" src="logo.png" width="36" height="36" alt="Rescisão Clara" />
+      <span class="logo-text">Rescisão Clara</span>
+    </div>
+    <nav class="kits-nav" aria-label="Navegar entre kits">
+      <a class="kits-link is-on" href="https://mkrecisao.github.io/rescisao-clara/" aria-current="page">Rescisão</a>
+      <a class="kits-link" href="https://mkrecisao.github.io/kit-fgts/">FGTS</a>
+      <a class="kits-link" href="https://mkrecisao.github.io/kit-seguro-desemprego/">Seguro</a>
+    </nav>
+  </header>
+
+  <main>
     <section class="hero" id="conteudo">
-      <span class="badge">Relatório · estimativa</span>
-      <h1>Seu kit do acerto, em PDF</h1>
-      <p class="sub">Cálculo, checklist e o que falar no RH. Leve no celular no dia do acerto. É estimativa — não é valor garantido.</p>
+      <div class="thanks-badge" aria-hidden="true">✓</div>
+      <p class="eyebrow">Pagamento confirmado</p>
+      <h1>Obrigado!</h1>
+      <p class="lead">Seu pagamento foi confirmado. O PDF do <strong>kit do acerto</strong> libera na Kiwify — pelo e-mail da compra e pela área do comprador.</p>
     </section>
 
-    <div id="faltou" class="card hidden">
-      <p class="kicker">Não encontramos o cálculo neste aparelho</p>
-      <h2 class="card-title">Preencha de novo para gerar o relatório</h2>
-      <p class="fine">Isso acontece se o pagamento foi em outro celular ou o navegador limpou os dados. O relatório sai na hora, sem depender do checkout.</p>
-      <form id="formCalc" onsubmit="event.preventDefault(); gerarDeFormulario();">
-        <label for="salario">Salário mensal bruto (R$)</label>
-        <input id="salario" type="number" inputmode="decimal" min="0" step="0.01" required />
-
-        <div class="row">
-          <div>
-            <label for="admissao">Admissão</label>
-            <input id="admissao" type="date" required />
-          </div>
-          <div>
-            <label for="saida">Saída</label>
-            <input id="saida" type="date" required />
-          </div>
-        </div>
-
-        <label for="tipo">Tipo de rescisão</label>
-        <select id="tipo">
-          <option value="sem_justa">Demissão sem justa causa</option>
-          <option value="pedido">Pedido de demissão</option>
-          <option value="acordo">Acordo 484-A</option>
-          <option value="justa">Justa causa</option>
-          <option value="indireta">Rescisão indireta</option>
-        </select>
-
-        <label for="aviso">Vai cumprir o aviso trabalhando?</label>
-        <select id="aviso">
-          <option value="nao">Não (indenizado / pode descontar)</option>
-          <option value="sim">Sim</option>
-        </select>
-
-        <div class="row">
-          <div>
-            <label for="feriasVenc">Férias vencidas (períodos)</label>
-            <input id="feriasVenc" type="number" min="0" step="1" value="0" />
-          </div>
-          <div>
-            <label for="diasMes">Dias no mês da saída</label>
-            <input id="diasMes" type="number" min="0" max="31" step="1" />
-          </div>
-        </div>
-
-        <label for="fgts">Saldo do FGTS na conta (R$)</label>
-        <input id="fgts" type="number" inputmode="decimal" min="0" step="0.01" value="0" />
-
-        <button class="btn" type="submit">Gerar meu relatório</button>
-      </form>
-    </div>
-
-    <div id="relatorio" class="hidden">
-      <div class="card result-card">
-        <p class="kicker">Total estimado desta saída</p>
-        <div class="total-hero gold" id="totGeral"></div>
-        <div class="total-split">
-          <div>
-            <span class="split-label">Verbas da empresa</span>
-            <span class="split-val gold" id="totEmpresa"></span>
-          </div>
-          <div>
-            <span class="split-label">Saque do FGTS</span>
-            <span class="split-val" id="totFgts"></span>
-          </div>
-        </div>
-        <p class="note">Estimativa com base no que você informou. Confira cada linha no TRCT.</p>
-      </div>
-
-      <div class="card" style="margin-top:14px">
-        <p class="kicker">Dados informados</p>
-        <dl class="kv" id="dados"></dl>
-      </div>
-
-      <div class="card" style="margin-top:14px">
-        <p class="kicker">Bases do cálculo</p>
-        <dl class="kv" id="basesKv"></dl>
-      </div>
-
-      <div class="card" style="margin-top:14px">
-        <p class="kicker">Verbas discriminadas</p>
-        <h2 class="card-title">Fórmula ao lado de cada valor</h2>
-        <div id="verbas"></div>
-      </div>
-
-      <div class="card" style="margin-top:14px">
-        <p class="kicker">Comparação</p>
-        <h2 class="card-title">Se a saída fosse outra</h2>
-        <div class="table-scroll">
-          <table>
-            <thead>
-              <tr><th></th><th>Sem justa</th><th>Pedido</th><th>Acordo</th></tr>
-            </thead>
-            <tbody id="cmp"></tbody>
-          </table>
+    <section class="block">
+      <div class="thanks-card">
+        <h2>Próximos passos</h2>
+        <ul class="checks">
+          <li>Veja o e-mail da Kiwify (também a pasta de spam)</li>
+          <li>Baixe o PDF na área do comprador da Kiwify</li>
+          <li>Dúvidas? Chame no WhatsApp</li>
+        </ul>
+        <a class="btn btn-wa btn-block" href="https://wa.me/555197742550?text=Oi%21%20Acabei%20de%20comprar%20o%20kit%20do%20acerto%20e%20preciso%20de%20ajuda" target="_blank" rel="noopener">Ajuda no WhatsApp</a>
+        <div class="sec-links">
+          <a class="btn btn-ghost" href="index.html#calculadora">Abrir calculadora</a>
+          <a class="btn btn-ghost" href="index.html">Voltar ao início</a>
         </div>
       </div>
 
-      <div class="card" style="margin-top:14px">
-        <p class="kicker">Prazo e seguro-desemprego</p>
-        <div id="prazoBox"></div>
-      </div>
+      <p class="cross-sell">Quer complementar? Veja também o <a href="https://mkrecisao.github.io/kit-fgts/">Kit FGTS</a> e o <a href="https://mkrecisao.github.io/kit-seguro-desemprego/">Kit Seguro-Desemprego</a>.</p>
+    </section>
+  </main>
 
-      <div class="card" style="margin-top:14px">
-        <p class="kicker">Antes de assinar</p>
-        <p class="note" id="disclaimer">
-          Esta é uma <strong>estimativa informativa</strong>. Não substitui advogado, contador, TRCT, eSocial nem a convenção coletiva.
-          Não calcula INSS, IR, médias de variáveis, norma coletiva nem parcelas do seguro-desemprego.
-          Não promete valor a receber. O documento oficial do acerto é o TRCT / eSocial.
-        </p>
-      </div>
+  <footer class="foot">
+    <p>Rescisão Clara · Conteúdo informativo · Não substitui advogado, contador, eSocial nem a convenção coletiva.</p>
+  </footer>
 
-      <div class="card promo" style="margin-top:14px">
-        <p class="kicker">Baixar</p>
-        <h2 class="card-title">Leve o relatório e o bônus</h2>
-        <div class="actions two">
-          <button class="btn" type="button" id="btnPdf" onclick="baixarPdf()">Baixar kit do acerto (PDF)</button>
-          <a class="btn-ghost" href="o-que-conferir-no-trct.pdf" download="o-que-conferir-no-trct.pdf">Baixar checklist (bônus)</a>
-        </div>
-        <p class="fine">O PDF traz cálculo, checklist e frases pro RH. O arquivo extra é o checklist genérico.</p>
-        <p id="pdfMsg" class="hidden" role="status"></p>
-      </div>
-    </div>
-
-    <footer>
-      Conteúdo informativo. Não substitui advogado, contador, TRCT, eSocial nem a convenção coletiva. Totais são estimativa. Não promete valor a receber.
-    </footer>
-  </div>
-
-<script>
-function brl(n){
-  return n.toLocaleString("pt-BR", {style:"currency", currency:"BRL"});
-}
-function parseDate(id){
-  const v = document.getElementById(id).value;
-  if(!v) return null;
-  const [y,m,d] = v.split("-").map(Number);
-  return new Date(y, m-1, d);
-}
-function yearsComplete(a, b){
-  let y = b.getFullYear() - a.getFullYear();
-  const md = (b.getMonth() - a.getMonth()) * 32 + (b.getDate() - a.getDate());
-  if (md < 0) y -= 1;
-  return Math.max(0, y);
-}
-function addDays(dt, days){
-  const x = new Date(dt.getTime());
-  x.setDate(x.getDate() + days);
-  return x;
-}
-function avos13(admissao, fim){
-  const startYear = new Date(fim.getFullYear(), 0, 1);
-  const inicio = admissao.getFullYear() === fim.getFullYear() ? admissao : startYear;
-  let months = (fim.getFullYear() - inicio.getFullYear()) * 12 + (fim.getMonth() - inicio.getMonth());
-  if (fim.getDate() >= 15) months += 1;
-  if (inicio !== startYear && inicio.getDate() > 15) months -= 1;
-  return Math.max(0, Math.min(12, months));
-}
-function lastAnniversary(admissao, fim){
-  let a = new Date(fim.getFullYear(), admissao.getMonth(), admissao.getDate());
-  if (a > fim) a = new Date(fim.getFullYear()-1, admissao.getMonth(), admissao.getDate());
-  return a;
-}
-function avosFerias(admissao, fim){
-  const ini = lastAnniversary(admissao, fim);
-  let months = (fim.getFullYear() - ini.getFullYear()) * 12 + (fim.getMonth() - ini.getMonth());
-  if (fim.getDate() >= 15) months += 1;
-  return Math.max(0, Math.min(12, months));
-}
-function pack(tipo, salario, admissao, saida, cumpriu, feriasVenc, diasMes, fgts){
-  const full = tipo === "sem_justa" || tipo === "indireta";
-  const pedido = tipo === "pedido";
-  const acordo = tipo === "acordo";
-  const justa = tipo === "justa";
-  const anos = yearsComplete(admissao, saida);
-  const avisoCheio = Math.min(90, 30 + 3 * anos);
-  let avisoDias = 0;
-  if (full && !cumpriu) avisoDias = avisoCheio;
-  if (acordo && !cumpriu) avisoDias = Math.round(avisoCheio / 2);
-  const projetada = avisoDias > 0 ? addDays(saida, avisoDias) : saida;
-  const a13 = justa ? 0 : avos13(admissao, projetada);
-  const aFer = justa ? 0 : avosFerias(admissao, projetada);
-  const saldo = salario / 30 * diasMes;
-  const avisoVal = salario / 30 * avisoDias;
-  const decimo = salario / 12 * a13;
-  const ferVenc = salario * feriasVenc * (4/3);
-  const ferProp = (salario / 12 * aFer) * (4/3);
-  const multa = full ? fgts * 0.4 : acordo ? fgts * 0.2 : 0;
-  const saque = full ? fgts : acordo ? fgts * 0.8 : 0;
-  const descAviso = (pedido && !cumpriu) ? -salario : 0;
-  const empresa = saldo + avisoVal + decimo + ferVenc + ferProp + multa + descAviso;
-  return {
-    anos, avisoCheio, avisoDias, projetada, a13, aFer,
-    saldo, avisoVal, decimo, ferVenc, ferProp, multa, saque, descAviso,
-    empresa, total: empresa + saque
-  };
-}
-
-const TIPO_LABEL = {
-  sem_justa: "Demissão sem justa causa",
-  pedido: "Pedido de demissão",
-  acordo: "Acordo 484-A",
-  justa: "Justa causa",
-  indireta: "Rescisão indireta"
-};
-function fmtDate(d){
-  return d.toLocaleDateString("pt-BR");
-}
-function lerEntrada(){
-  const salario = Number(document.getElementById("salario").value || 0);
-  const admissao = parseDate("admissao");
-  const saida = parseDate("saida");
-  const tipo = document.getElementById("tipo").value;
-  const cumpriu = document.getElementById("aviso").value === "sim";
-  const feriasVenc = Number(document.getElementById("feriasVenc").value || 0);
-  let diasMes = Number(document.getElementById("diasMes").value || 0);
-  const fgts = Number(document.getElementById("fgts").value || 0);
-  if (!admissao || !saida || saida < admissao) return null;
-  if (!diasMes) diasMes = saida.getDate();
-  return { salario, admissao, saida, tipo, cumpriu, feriasVenc, diasMes, fgts,
-    aviso: document.getElementById("aviso").value };
-}
-function formulas(e, r){
-  const full = e.tipo === "sem_justa" || e.tipo === "indireta";
-  const acordo = e.tipo === "acordo";
-  const pedido = e.tipo === "pedido";
-  const justa = e.tipo === "justa";
-  return {
-    saldo: "salário ÷ 30 × " + e.diasMes + " dias",
-    aviso: r.avisoDias
-      ? "salário ÷ 30 × " + r.avisoDias + " dias"
-      : (e.cumpriu ? "aviso cumprido — sem indenização" : "não se aplica a este tipo"),
-    decimo: r.a13 ? "salário ÷ 12 × " + r.a13 + " avos" : (justa ? "justa causa — sem 13º proporcional" : "0 avos"),
-    ferVenc: e.feriasVenc ? "salário × " + e.feriasVenc + " × 4/3" : "nenhum período informado",
-    ferProp: r.aFer ? "(salário ÷ 12 × " + r.aFer + " avos) × 4/3" : (justa ? "justa causa — sem férias proporcionais" : "0 avos"),
-    multa: full ? "saldo FGTS × 40%" : acordo ? "saldo FGTS × 20%" : "não se aplica a este tipo",
-    desc: (pedido && !e.cumpriu) ? "pedido sem cumprimento — desconta 1 salário" : "sem desconto nesta saída",
-    saque: full ? "100% do saldo FGTS" : acordo ? "80% do saldo FGTS" : "sem direito a saque nesta modalidade"
-  };
-}
-function temSeguro(tipo){
-  return tipo === "sem_justa" || tipo === "indireta";
-}
-function kvHtml(pairs){
-  return pairs.map(function(p){
-    return "<dt>"+p[0]+"</dt><dd>"+p[1]+"</dd>";
-  }).join("");
-}
-function verbaHtml(nome, formula, valor){
-  const cls = valor < 0 ? "bad" : "";
-  return '<div class="verba"><div><strong>'+nome+'</strong><span class="formula">'+formula+'</span></div><div class="val '+cls+'">'+brl(valor)+"</div></div>";
-}
-function montar(){
-  const e = lerEntrada();
-  if (!e) return null;
-  const r = pack(e.tipo, e.salario, e.admissao, e.saida, e.cumpriu, e.feriasVenc, e.diasMes, e.fgts);
-  const A = pack("sem_justa", e.salario, e.admissao, e.saida, e.cumpriu, e.feriasVenc, e.diasMes, e.fgts);
-  const B = pack("pedido", e.salario, e.admissao, e.saida, e.cumpriu, e.feriasVenc, e.diasMes, e.fgts);
-  const C = pack("acordo", e.salario, e.admissao, e.saida, e.cumpriu, e.feriasVenc, e.diasMes, e.fgts);
-  const f = formulas(e, r);
-  const prazo = addDays(e.saida, 10);
-  return { e, r, A, B, C, f, prazo };
-}
-function renderRelatorio(){
-  const ctx = montar();
-  if (!ctx) {
-    document.getElementById("faltou").classList.remove("hidden");
-    document.getElementById("relatorio").classList.add("hidden");
-    return;
-  }
-  const { e, r, A, B, C, f, prazo } = ctx;
-  document.getElementById("totGeral").textContent = brl(r.total);
-  document.getElementById("totEmpresa").textContent = brl(r.empresa);
-  document.getElementById("totFgts").textContent = brl(r.saque);
-  document.getElementById("dados").innerHTML = kvHtml([
-    ["Salário mensal bruto", brl(e.salario)],
-    ["Admissão", fmtDate(e.admissao)],
-    ["Saída", fmtDate(e.saida)],
-    ["Tipo de rescisão", TIPO_LABEL[e.tipo] || e.tipo],
-    ["Aviso prévio", e.cumpriu ? "Cumprido (trabalhado)" : "Não cumprido (indenizado / pode descontar)"],
-    ["Férias vencidas", e.feriasVenc + " período(s)"],
-    ["Dias no mês da saída", String(e.diasMes)],
-    ["Saldo do FGTS", brl(e.fgts)]
-  ]);
-  document.getElementById("basesKv").innerHTML = kvHtml([
-    ["Tempo de casa", r.anos + " ano(s) completo(s)"],
-    ["Aviso cheio (30 + 3 por ano, teto 90)", r.avisoCheio + " dias"],
-    ["Dias de aviso desta saída", r.avisoDias + " dias"],
-    ["Avos de 13º", r.a13 + "/12"],
-    ["Avos de férias", r.aFer + "/12"],
-    ["Data projetada (para 13º e férias)", fmtDate(r.projetada)]
-  ]);
-  document.getElementById("verbas").innerHTML = [
-    verbaHtml("Saldo de salário", f.saldo, r.saldo),
-    verbaHtml("Aviso prévio indenizado", f.aviso, r.avisoVal),
-    verbaHtml("13º proporcional", f.decimo, r.decimo),
-    verbaHtml("Férias vencidas + 1/3", f.ferVenc, r.ferVenc),
-    verbaHtml("Férias proporcionais + 1/3", f.ferProp, r.ferProp),
-    verbaHtml("Multa do FGTS", f.multa, r.multa),
-    verbaHtml("Descontos (aviso)", f.desc, r.descAviso),
-    verbaHtml("Saque do FGTS", f.saque, r.saque)
-  ].join("");
-  document.getElementById("cmp").innerHTML =
-    "<tr><td>Verbas empresa</td><td>"+brl(A.empresa)+"</td><td>"+brl(B.empresa)+"</td><td>"+brl(C.empresa)+"</td></tr>"+
-    "<tr><td>Saque FGTS</td><td>"+brl(A.saque)+"</td><td>"+brl(B.saque)+"</td><td>"+brl(C.saque)+"</td></tr>"+
-    "<tr><td><b>Total estimado</b></td><td><b>"+brl(A.total)+"</b></td><td><b>"+brl(B.total)+"</b></td><td><b>"+brl(C.total)+"</b></td></tr>";
-  const seguro = temSeguro(e.tipo);
-  document.getElementById("prazoBox").innerHTML =
-    "<p><strong>Prazo do art. 477 §6º da CLT.</strong> A partir da data de saída informada ("+fmtDate(e.saida)+"), os 10 dias corridos vencem em <strong>"+fmtDate(prazo)+"</strong>. O pagamento das verbas rescisórias deve ocorrer até essa data. Atraso pode gerar multa de 1 salário (art. 477 §8º) — confira o caso concreto.</p>"+
-    "<p><strong>Seguro-desemprego: </strong>"+(seguro
-      ? "<span class=\"tag yes\">Em regra, sim</span> nesta modalidade (sem justa causa ou rescisão indireta). Este relatório <em>não</em> calcula o número nem o valor das parcelas."
-      : "<span class=\"tag no\">Em regra, não</span> nesta modalidade (pedido, acordo 484-A ou justa causa).")+
-    "</p>";
-  document.getElementById("faltou").classList.add("hidden");
-  document.getElementById("relatorio").classList.remove("hidden");
-  window.__ctx = ctx;
-}
-function salvarEntrada(){
-  const payload = {
-    salario: document.getElementById("salario").value,
-    admissao: document.getElementById("admissao").value,
-    saida: document.getElementById("saida").value,
-    tipo: document.getElementById("tipo").value,
-    aviso: document.getElementById("aviso").value,
-    feriasVenc: document.getElementById("feriasVenc").value,
-    diasMes: document.getElementById("diasMes").value,
-    fgts: document.getElementById("fgts").value
-  };
-  try { localStorage.setItem("rc_calc", JSON.stringify(payload)); } catch (err) {}
-}
-function aplicarPayload(p){
-  ["salario","admissao","saida","tipo","aviso","feriasVenc","diasMes","fgts"].forEach(function(k){
-    if (p[k] != null && document.getElementById(k)) document.getElementById(k).value = p[k];
-  });
-}
-function gerarDeFormulario(){
-  const e = lerEntrada();
-  if (!e) {
-    alert("Confira as datas de admissão e saída.");
-    document.getElementById("faltou").classList.remove("hidden");
-    return;
-  }
-  salvarEntrada();
-  renderRelatorio();
-  document.getElementById("relatorio").scrollIntoView({behavior:"smooth", block:"start"});
-}
-function pdfTxt(s){
-  return String(s)
-    .replace(/—/g, "-")
-    .replace(/–/g, "-")
-    .replace(/•/g, "-")
-    .replace(/“|”/g, '"')
-    .replace(/‘|’/g, "'");
-}
-function baixarPdf(){
-  const msg = document.getElementById("pdfMsg");
-  if (!window.jspdf || !window.jspdf.jsPDF) {
-    msg.textContent = "Não foi possível carregar o gerador de PDF. Recarregue a página e tente de novo.";
-    msg.classList.remove("hidden");
-    return;
-  }
-  const ctx = window.__ctx || montar();
-  if (!ctx) {
-    msg.textContent = "Preencha os números acima para gerar o PDF.";
-    msg.classList.remove("hidden");
-    return;
-  }
-  const doc = new window.jspdf.jsPDF({ unit: "mm", format: "a4" });
-  const { e, r, A, B, C, f, prazo } = ctx;
-  const W = 210, M = 16;
-  const navy = [11, 28, 51], gold = [245, 197, 66], muted = [61, 83, 107], ink = [11, 28, 51];
-
-  function header(full){
-    doc.setFillColor.apply(doc, navy);
-    doc.rect(0, 0, W, full ? 34 : 12, "F");
-    doc.setFillColor.apply(doc, gold);
-    doc.rect(0, full ? 34 : 12, W, full ? 2.2 : 1.4, "F");
-    doc.setTextColor.apply(doc, gold);
-    doc.setFont("helvetica", "bold");
-    if (full) {
-      doc.setFontSize(11);
-      doc.text("RESCISÃO CLARA", M, 13);
-      doc.setFont("helvetica", "normal");
-      doc.setFontSize(9);
-      doc.setTextColor(168, 182, 200);
-      doc.text("CLT sem enrolação", M, 18);
-      doc.setFont("helvetica", "bold");
-      doc.setTextColor(243, 246, 251);
-      doc.setFontSize(16);
-      doc.text("Kit do acerto (estimativa)", M, 28);
-    } else {
-      doc.setFontSize(8);
-      doc.text("RESCISÃO CLARA  ·  kit do acerto", M, 8);
-    }
-  }
-  function footer(page){
-    doc.setFont("helvetica", "normal");
-    doc.setFontSize(8);
-    doc.setTextColor.apply(doc, muted);
-    doc.text("Estimativa. Nao substitui o papel oficial, advogado, contador nem eSocial.", M, 287);
-    doc.text("Página " + page, W - M, 287, { align: "right" });
-  }
-  let y = 46;
-  header(true);
-  footer(1);
-
-  function ensure(h){
-    if (y + h > 278) {
-      doc.addPage();
-      header(false);
-      footer(doc.getNumberOfPages());
-      y = 22;
-    }
-  }
-  function h2(title){
-    ensure(12);
-    y += 4;
-    doc.setFont("helvetica", "bold");
-    doc.setFontSize(11);
-    doc.setTextColor.apply(doc, ink);
-    doc.text(pdfTxt(title), M, y);
-    y += 2;
-    doc.setDrawColor.apply(doc, gold);
-    doc.setLineWidth(0.6);
-    doc.line(M, y, W - M, y);
-    y += 6;
-  }
-  function row3(a, b, c, bold){
-    ensure(8);
-    doc.setFont("helvetica", bold ? "bold" : "normal");
-    doc.setFontSize(9.5);
-    doc.setTextColor.apply(doc, ink);
-    const lines = doc.splitTextToSize(pdfTxt(b), 88);
-    doc.text(pdfTxt(a), M, y);
-    doc.text(lines, M + 58, y);
-    doc.setFont("helvetica", "bold");
-    doc.text(pdfTxt(c), W - M, y, { align: "right" });
-    y += Math.max(6.2, lines.length * 4.4);
-  }
-  function kv(label, value){
-    ensure(7);
-    doc.setFont("helvetica", "normal");
-    doc.setFontSize(9.5);
-    doc.setTextColor.apply(doc, muted);
-    doc.text(pdfTxt(label), M, y);
-    doc.setTextColor.apply(doc, ink);
-    doc.setFont("helvetica", "bold");
-    doc.text(pdfTxt(value), W - M, y, { align: "right" });
-    y += 6.2;
-  }
-
-  doc.setFont("helvetica", "normal");
-  doc.setFontSize(9);
-  doc.setTextColor.apply(doc, muted);
-  doc.text("Gerado a partir dos números informados. Não é valor a receber.", M, y);
-  y += 6;
-
-  h2("1. Dados informados");
-  kv("Salário mensal bruto", brl(e.salario));
-  kv("Admissão", fmtDate(e.admissao));
-  kv("Saída", fmtDate(e.saida));
-  kv("Tipo de rescisão", TIPO_LABEL[e.tipo] || e.tipo);
-  kv("Aviso prévio", e.cumpriu ? "Cumprido (trabalhado)" : "Não cumprido (indenizado / pode descontar)");
-  kv("Férias vencidas", e.feriasVenc + " período(s)");
-  kv("Dias no mês da saída", String(e.diasMes));
-  kv("Saldo do FGTS", brl(e.fgts));
-
-  h2("2. Bases do cálculo");
-  kv("Tempo de casa", r.anos + " ano(s) completo(s)");
-  kv("Aviso cheio (30 + 3 por ano, teto 90)", r.avisoCheio + " dias");
-  kv("Dias de aviso desta saída", r.avisoDias + " dias");
-  kv("Avos de 13º", r.a13 + "/12");
-  kv("Avos de férias", r.aFer + "/12");
-  kv("Data projetada (para 13º e férias)", fmtDate(r.projetada));
-
-  h2("3. Verbas discriminadas (estimativa)");
-  doc.setFont("helvetica", "bold");
-  doc.setFontSize(8);
-  doc.setTextColor.apply(doc, muted);
-  doc.text("Verba", M, y);
-  doc.text("Fórmula", M + 58, y);
-  doc.text("Valor", W - M, y, { align: "right" });
-  y += 5;
-  row3("Saldo de salário", f.saldo, brl(r.saldo));
-  row3("Aviso prévio indenizado", f.aviso, brl(r.avisoVal));
-  row3("13º proporcional", f.decimo, brl(r.decimo));
-  row3("Férias vencidas + 1/3", f.ferVenc, brl(r.ferVenc));
-  row3("Férias proporcionais + 1/3", f.ferProp, brl(r.ferProp));
-  row3("Multa do FGTS", f.multa, brl(r.multa));
-  row3("Descontos (aviso)", f.desc, brl(r.descAviso));
-  y += 2;
-  doc.setFillColor(11, 28, 51);
-  ensure(28);
-  doc.roundedRect(M, y, W - 2 * M, 26, 2, 2, "F");
-  doc.setTextColor.apply(doc, gold);
-  doc.setFont("helvetica", "bold");
-  doc.setFontSize(10);
-  doc.text("Total das verbas da empresa", M + 4, y + 8);
-  doc.text(brl(r.empresa), W - M - 4, y + 8, { align: "right" });
-  doc.setTextColor(243, 246, 251);
-  doc.setFont("helvetica", "normal");
-  doc.setFontSize(9);
-  doc.text("Saque do FGTS", M + 4, y + 15);
-  doc.text(brl(r.saque), W - M - 4, y + 15, { align: "right" });
-  doc.setTextColor.apply(doc, gold);
-  doc.setFont("helvetica", "bold");
-  doc.text("Total estimado", M + 4, y + 22);
-  doc.text(brl(r.total), W - M - 4, y + 22, { align: "right" });
-  y += 32;
-
-  h2("4. Comparação entre tipos de saída");
-  doc.setFont("helvetica", "bold");
-  doc.setFontSize(8);
-  doc.setTextColor.apply(doc, muted);
-  const cols = [M, M + 55, M + 100, M + 145];
-  doc.text("Rubrica", cols[0], y);
-  doc.text("Sem justa", cols[1], y);
-  doc.text("Pedido", cols[2], y);
-  doc.text("Acordo 484-A", cols[3], y);
-  y += 6;
-  function cmpRow(label, a, b, c, bold){
-    ensure(7);
-    doc.setFont("helvetica", bold ? "bold" : "normal");
-    doc.setFontSize(9);
-    doc.setTextColor.apply(doc, ink);
-    doc.text(pdfTxt(label), cols[0], y);
-    doc.text(a, cols[1], y);
-    doc.text(b, cols[2], y);
-    doc.text(c, cols[3], y);
-    y += 6.2;
-  }
-  cmpRow("Verbas empresa", brl(A.empresa), brl(B.empresa), brl(C.empresa));
-  cmpRow("Saque FGTS", brl(A.saque), brl(B.saque), brl(C.saque));
-  cmpRow("Total estimado", brl(A.total), brl(B.total), brl(C.total), true);
-
-  h2("5. Prazo do art. 477 §6º da CLT");
-  doc.setFont("helvetica", "normal");
-  doc.setFontSize(10);
-  doc.setTextColor.apply(doc, ink);
-  const prazoTxt = "A partir da data de saida informada (" + fmtDate(e.saida) + "), os 10 dias corridos vencem em " + fmtDate(prazo) + ". O pagamento deve ocorrer ate essa data. Atraso por culpa da empresa pode gerar multa de 1 salario. Confira no papel do acerto e, se preciso, com um advogado.";
-  const prazoLines = doc.splitTextToSize(prazoTxt, W - 2 * M);
-  ensure(prazoLines.length * 5 + 4);
-  doc.text(prazoLines, M, y);
-  y += prazoLines.length * 5 + 4;
-
-  h2("6. Seguro-desemprego");
-  const segYes = temSeguro(e.tipo);
-  const segTxt = segYes
-    ? "Nesta modalidade (" + (TIPO_LABEL[e.tipo]) + "), em regra HÁ direito a seguro-desemprego. Este relatório NÃO calcula o número nem o valor das parcelas - isso depende de tempo de trabalho, requisições anteriores e regras da data do requerimento."
-    : "Nesta modalidade (" + (TIPO_LABEL[e.tipo]) + "), em regra NÃO há direito a seguro-desemprego (pedido de demissão, acordo 484-A ou justa causa).";
-  const segLines = doc.splitTextToSize(pdfTxt(segTxt), W - 2 * M);
-  ensure(segLines.length * 5 + 4);
-  doc.setFont("helvetica", "normal");
-  doc.setFontSize(10);
-  doc.text(segLines, M, y);
-  y += segLines.length * 5 + 6;
-
-  h2("7. Checklist — o que olhar no papel do acerto");
-  const checks = [
-    "Nome, CPF e datas batem com a carteira?",
-    "Saldo de salario: dias trabalhados no mes da saida",
-    "Aviso previo: indenizado ou trabalhado? Dias batem com o tempo de casa?",
-    "13o proporcional: avos batem com a data projetada?",
-    "Ferias vencidas e proporcionais + 1/3",
-    "Multa e saque do FGTS (quando a modalidade der direito)",
-    "Data limite dos 10 dias corridos para pagar",
-    "Voce esta sendo cobrado de aviso indevido no pedido?"
-  ];
-  doc.setFont("helvetica", "normal");
-  doc.setFontSize(10);
-  doc.setTextColor.apply(doc, ink);
-  checks.forEach(function(item){
-    const lines = doc.splitTextToSize(pdfTxt("[ ]  " + item), W - 2 * M);
-    ensure(lines.length * 5 + 2);
-    doc.text(lines, M, y);
-    y += lines.length * 5 + 2;
-  });
-  y += 4;
-
-  h2("8. O que falar no RH (se faltar algo)");
-  const fala = [
-    "Posso conferir esta linha com a conta que eu trouxe? O valor nao bate.",
-    "O aviso proporcional e 30 + 3 dias por ano completo (teto 90). Meu tempo de casa precisa estar refletido nos dias.",
-    "O prazo de pagamento e de 10 dias corridos a partir da saida. A data limite aqui e " + fmtDate(prazo) + ".",
-    "Se o pagamento atrasar por culpa da empresa, cabe multa de 1 salario. Quero que isso conste.",
-    "Antes de assinar, preciso de uma copia do recibo com todos os valores discriminados."
-  ];
-  fala.forEach(function(frase, i){
-    const block = (i + 1) + ") " + String.fromCharCode(34) + frase + String.fromCharCode(34);
-    const lines = doc.splitTextToSize(pdfTxt(block), W - 2 * M);
-    ensure(lines.length * 5 + 3);
-    doc.setFont("helvetica", "normal");
-    doc.setFontSize(10);
-    doc.setTextColor.apply(doc, ink);
-    doc.text(lines, M, y);
-    y += lines.length * 5 + 3;
-  });
-  y += 4;
-
-  h2("9. Aviso importante (leia)");
-  const disc = "Esta e uma ESTIMATIVA INFORMATIVA. Nao substitui advogado, contador, o recibo oficial da rescisao, eSocial nem a convencao coletiva. Nao calcula INSS, IR, medias de variaveis, norma coletiva nem parcelas do seguro-desemprego. Nao promete valor a receber. O documento oficial do acerto e o recibo da rescisao / eSocial. Regras da calculadora: aviso 30 + 3 dias por ano completo (max. 90). Sem justa causa e indireta: aviso indenizado se nao cumprido, 13o, ferias + 1/3, multa 40%, saque 100%. Pedido: sem multa e sem saque; aviso nao cumprido pode descontar 1 salario. Acordo 484-A: metade do aviso indenizado, multa 20%, saque 80%. Justa causa: em regra saldo e ferias vencidas.";
-
-  const discLines = doc.splitTextToSize(disc, W - 2 * M);
-  ensure(discLines.length * 4.6 + 4);
-  doc.setFont("helvetica", "normal");
-  doc.setFontSize(9);
-  doc.setTextColor.apply(doc, ink);
-  doc.text(discLines, M, y);
-
-  doc.save("rescisao-clara-kit-do-acerto.pdf");
-}
-
-(function init(){
-  let p = null;
-  try { p = JSON.parse(localStorage.getItem("rc_calc") || "null"); } catch (err) { p = null; }
-  if (p && p.admissao && p.saida) {
-    aplicarPayload(p);
-    renderRelatorio();
-  } else {
-    document.getElementById("faltou").classList.remove("hidden");
-  }
-  const saida = document.getElementById("saida");
-  if (saida) {
-    saida.addEventListener("change", function(){
-      const d = parseDate("saida");
-      if (d) document.getElementById("diasMes").value = d.getDate();
-    });
-  }
-})();
-</script>
+  <a class="wa-fab" href="https://wa.me/555197742550?text=Oi%21%20Acabei%20de%20comprar%20o%20kit%20do%20acerto%20e%20preciso%20de%20ajuda" target="_blank" rel="noopener" aria-label="Ajuda no WhatsApp" title="WhatsApp">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.52 3.48A11.86 11.86 0 0 0 12.04 0C5.5 0 .16 5.34.16 11.9c0 2.1.55 4.15 1.6 5.96L0 24l6.3-1.65a11.9 11.9 0 0 0 5.74 1.46h.01c6.54 0 11.88-5.34 11.88-11.9 0-3.18-1.24-6.16-3.41-8.43zM12.05 21.15h-.01a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.74.98 1-3.64-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.89 6.98c0 5.45-4.44 9.88-9.88 9.88zm5.42-7.4c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.04-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.5h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.87 1.22 3.07c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35z"/></svg>
+  </a>
 </body>
 </html>
